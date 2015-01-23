@@ -12,6 +12,7 @@
 package org.usfirst.frc2538.RecycleRush2538;
     
 
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
