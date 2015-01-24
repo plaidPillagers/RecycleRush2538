@@ -45,7 +45,7 @@ public class  intakeCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (!Robot.intake.okayContainer() || !Robot.intake.okayTote()){
+        if (!Robot.intake.okay()){
         	SmartDashboard.putString("Intake IsFinished", "in isFinished: true");
         	return true;
 		}
