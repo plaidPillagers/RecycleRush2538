@@ -75,7 +75,7 @@ public class OI {
         ejectButton = new JoystickButton(driveStick, 4);
         ejectButton.whileHeld(new eject());
         intakeButton = new JoystickButton(driveStick, 3);
-        intakeButton.whileHeld(new intakeCommand());
+        intakeButton.whenPressed(new intakeCommand());
         stopButton = new JoystickButton(driveStick, 11);
         stopButton.whenPressed(new stop());
         spinButton = new JoystickButton(driveStick, 12);
