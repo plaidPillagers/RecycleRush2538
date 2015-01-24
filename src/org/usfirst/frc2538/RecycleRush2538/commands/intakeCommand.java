@@ -37,7 +37,7 @@ public class  intakeCommand extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putString("Execute", "in execute" + debugCounter);
+    	SmartDashboard.putString("Intake Execute", "in execute" + debugCounter);
     	debugCounter++;
     	//System.out.println("Executing intake command");
     	Robot.intake.limitSwitchIntake();
@@ -46,7 +46,7 @@ public class  intakeCommand extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         if (!Robot.intake.okayContainer() || !Robot.intake.okayTote()){
-        	SmartDashboard.putString("IsFinished", "in isFinished: true");
+        	SmartDashboard.putString("Intake IsFinished", "in isFinished: true");
         	return true;
 		}
         SmartDashboard.putString("Intake Command", "in isFinished: false");
@@ -55,7 +55,7 @@ public class  intakeCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	SmartDashboard.putString("End", "in end");
+    	SmartDashboard.putString("Intaked End", "in end");
     	Robot.intake.stop();
     }
 
