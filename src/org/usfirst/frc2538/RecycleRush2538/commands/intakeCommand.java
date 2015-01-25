@@ -39,6 +39,8 @@ public class  intakeCommand extends Command {
     protected void execute() {
     	SmartDashboard.putString("Intake Execute", "in execute" + debugCounter);
     	debugCounter++;
+    	double input = SmartDashboard.getNumber("Joystick X: ");
+    	SmartDashboard.putNumber("Output", input);
     	//System.out.println("Executing intake command");
     	Robot.intake.limitSwitchIntake();
     }
