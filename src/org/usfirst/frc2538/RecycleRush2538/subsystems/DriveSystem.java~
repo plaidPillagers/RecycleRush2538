@@ -120,9 +120,6 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putNumber("Right Front Motor: ", rightFrontVal);
     	SmartDashboard.putNumber("Right Rear Motor: ", rightRearVal);
     	
-    	SmartDashboard.putBoolean("toteClear: ", Robot.intake.okayTote());
-    	SmartDashboard.putBoolean("Container Status", Robot.intake.okayContainer());
-
     	
     }
     
