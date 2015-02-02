@@ -12,7 +12,8 @@
 package org.usfirst.frc2538.RecycleRush2538;
     
 
-import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -33,6 +34,10 @@ public class RobotMap {
     public static RobotDrive driveSystemRobotDrive41;
     public static Ultrasonic driveSystemport;
     public static Ultrasonic driveSystemstarboard;
+    public static Encoder driveSystemleftFrontEncoder;
+    public static Encoder driveSystemrightFrontEncoder;
+    public static Encoder driveSystemleftRearEncoder;
+    public static Encoder driveSystemrightRearEncoder;
     public static SpeedController intakeleftWheel;
     public static SpeedController intakerightWheel;
     public static DigitalInput intakecontainerSwitch;
@@ -76,6 +81,22 @@ public class RobotMap {
         driveSystemstarboard = new Ultrasonic(4, 5);
         LiveWindow.addSensor("DriveSystem", "starboard", driveSystemstarboard);
         
+        driveSystemleftFrontEncoder = new Encoder(6, 7, false, EncodingType.k4X);
+        LiveWindow.addSensor("DriveSystem", "leftFrontEncoder", driveSystemleftFrontEncoder);
+        driveSystemleftFrontEncoder.setDistancePerPulse(4.71238899);
+        driveSystemleftFrontEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+        driveSystemrightFrontEncoder = new Encoder(8, 9, false, EncodingType.k4X);
+        LiveWindow.addSensor("DriveSystem", "rightFrontEncoder", driveSystemrightFrontEncoder);
+        driveSystemrightFrontEncoder.setDistancePerPulse(4.71238899);
+        driveSystemrightFrontEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+        driveSystemleftRearEncoder = new Encoder(10, 11, false, EncodingType.k4X);
+        LiveWindow.addSensor("DriveSystem", "leftRearEncoder", driveSystemleftRearEncoder);
+        driveSystemleftRearEncoder.setDistancePerPulse(4.71238899);
+        driveSystemleftRearEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+        driveSystemrightRearEncoder = new Encoder(12, 13, false, EncodingType.k4X);
+        LiveWindow.addSensor("DriveSystem", "rightRearEncoder", driveSystemrightRearEncoder);
+        driveSystemrightRearEncoder.setDistancePerPulse(4.71238899);
+        driveSystemrightRearEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
         intakeleftWheel = new Talon(5);
         LiveWindow.addActuator("Intake", "leftWheel", (Talon) intakeleftWheel);
         

@@ -94,7 +94,7 @@ public class RobotMap {
         lifttrident = new DoubleSolenoid(0, 4, 5);      
         LiveWindow.addActuator("Lift", "trident", lifttrident);
         
-        liftlifting1 = new DoubleSolenoid(0, 1, 0);      
+        liftlifting1 = new DoubleSolenoid(0, 0, 1);      
         LiveWindow.addActuator("Lift", "lifting1", liftlifting1);
         
         liftlifting2 = new DoubleSolenoid(0, 2, 3);      
