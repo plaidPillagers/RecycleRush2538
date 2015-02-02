@@ -66,6 +66,12 @@ public class DriveSystem extends Subsystem {
     public double aftDriveProportion = Robot.aftHeavy;
     public int driveMode  = 2;
     MecanumSpeedConrtoller[] sketchySpeedConrtollers = new MecanumSpeedConrtoller[4];
+    
+    int WHEEL_RADIUS = 3;
+    double pulsePerRotaion = 360;
+    double driveEncoderDistancePerTick = (Math.PI * 2 * WHEEL_RADIUS) / pulsePerRotaion;
+    long startTime = 0;
+    
    
     
     public void initDefaultCommand() {
@@ -135,6 +141,11 @@ public class DriveSystem extends Subsystem {
     	double accelY = accelerometer.getY();
     	double accelZ = accelerometer.getZ();
     	
+    	double frontLeftSpeed = leftFrontEncoder.getRate();
+    	double frontRightSpeed = rightFrontEncoder.getRate();
+    	double rearLeftSpeed = leftRearEncoder.getRate();
+    	double rearRightSpeed = rightRearEncoder.getRate();
+    	
     	SmartDashboard.putNumber("Joystick X: ", joyStickX);
     	SmartDashboard.putNumber("Joystick Y: ", joyStickY);
     	SmartDashboard.putNumber("Joystick Z: ", joyStickZ);
@@ -147,6 +158,11 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putDouble("Accelerometer X", accelX);
     	SmartDashboard.putDouble("Accelerometer Y", accelY);
     	SmartDashboard.putDouble("Accelerometer Z", accelZ);
+    	
+    	SmartDashboard.putDouble("Front Left Speed", frontLeftSpeed);
+    	SmartDashboard.putDouble("Front Right Speed", frontRightSpeed);
+    	SmartDashboard.putDouble("Rear Left Speed", rearLeftSpeed);
+    	SmartDashboard.putDouble("Rear Right Speed", rearRightSpeed);
     }
     
     public void homemadeMecanum() {
@@ -227,5 +243,18 @@ public class DriveSystem extends Subsystem {
 		rightRearMec.setCompensation(aftCompensation);
     }
     
+    private double getEncoderSpeed(Encoder encoder) {
+    	long elapseTime = getElapsetime();
+    	reset();
+    	return encoder.getDistance() / elapseTime;
+    }
+    private long reset() {
+    	return startTime = 0;
+    	
+    }
+    
+    private long getElapsetime() {
+    	return startTime = System.currentTimeMillis() - startTime;
+    }
 }
 
