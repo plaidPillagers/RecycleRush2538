@@ -1,9 +1,6 @@
 package org.usfirst.frc2538.RecycleRush2538.subsystems;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.networktables2.util.Set;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MecanumSpeedConrtoller {

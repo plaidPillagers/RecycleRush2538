@@ -283,7 +283,7 @@ Children:
       Name: rightRearEncoder
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: DriveMecnum}
+        name: Default Command, type: Command, validators: null, value: None}
     Base: Subsystem
     Name: DriveSystem
   - Children:
@@ -886,6 +886,14 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: driveHomemadeMecanum
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: testDiagonal
   Properties: {}
   Base: Commands
   Name: Commands

@@ -82,6 +82,7 @@ public class Robot extends IterativeRobot {
         frontHeavy = prefs.getDouble("frontHeavy", 1);
         balanced = prefs.getDouble("balanced", 1);
         aftHeavy = prefs.getDouble("aftHeavy", 1);
+        Robot.driveSystem.makeWheels();
     }
 
     /**
@@ -114,7 +115,6 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        Robot.driveSystem.makeWheels();
     }
 
     /**
