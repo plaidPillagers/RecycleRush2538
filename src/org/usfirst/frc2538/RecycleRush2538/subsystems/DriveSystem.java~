@@ -13,6 +13,8 @@ package org.usfirst.frc2538.RecycleRush2538.subsystems;
 
 
 
+import javax.xml.ws.Holder;
+
 import org.usfirst.frc2538.RecycleRush2538.Robot;
 import org.usfirst.frc2538.RecycleRush2538.RobotMap;
 import org.usfirst.frc2538.RecycleRush2538.commands.*;
@@ -59,8 +61,8 @@ public class DriveSystem extends Subsystem {
     public boolean isInverted = false;
     public boolean isTwisted = false;
     public Accelerometer accelerometer = new BuiltInAccelerometer();
-    public double frontCompensation = 1;
-    public double aftCompensation = 1;
+    public double frontCompensation = 1.0;
+    public double aftCompensation = 1.0;
     public double forwardDriveProportion = Robot.frontHeavy;
     public double balancedDriveProportion = Robot.balanced;
     public double aftDriveProportion = Robot.aftHeavy;
@@ -147,10 +149,10 @@ public class DriveSystem extends Subsystem {
     	double accelY = accelerometer.getY();
     	double accelZ = accelerometer.getZ();
     	
-    	double frontLeftSpeed = leftFrontEncoder.getRate();
-    	double frontRightSpeed = rightFrontEncoder.getRate();
-    	double rearLeftSpeed = leftRearEncoder.getRate();
-    	double rearRightSpeed = rightRearEncoder.getRate();
+    	//double frontLeftSpeed = leftFrontEncoder.getRate();
+    	//double frontRightSpeed = rightFrontEncoder.getRate();
+    	//double rearLeftSpeed = leftRearEncoder.getRate();
+    	//double rearRightSpeed = rightRearEncoder.getRate();
     	
     	SmartDashboard.putNumber("Joystick X: ", joyStickX);
     	SmartDashboard.putNumber("Joystick Y: ", joyStickY);
@@ -165,12 +167,12 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putDouble("Accelerometer X", accelX);
     	SmartDashboard.putDouble("Accelerometer Y", accelY);
     	SmartDashboard.putDouble("Accelerometer Z", accelZ);
-    	
+    	/*
     	SmartDashboard.putDouble("Front Left Speed", frontLeftSpeed);
     	SmartDashboard.putDouble("Front Right Speed", frontRightSpeed);
     	SmartDashboard.putDouble("Rear Left Speed", rearLeftSpeed);
     	SmartDashboard.putDouble("Rear Right Speed", rearRightSpeed);
-    	
+    	*/
     	SmartDashboard.putNumber("circular x", circularXVal);
     	SmartDashboard.putNumber("circular y", circularYVal);
     	SmartDashboard.putNumber("joystick magnitude", magnitude);
@@ -180,9 +182,9 @@ public class DriveSystem extends Subsystem {
     public void homemadeMecanum() {
     	
     	Joystick driveJoystick = Robot.oi.driveStick;
-    	circularJoystick(driveJoystick);
-    	double joystickX = circularXVal;
-    	double joystickY = circularYVal;
+    	//circularJoystick(driveJoystick);
+    	double joystickX = driveJoystick.getX();
+    	double joystickY = - driveJoystick.getY();
     	double joystickZ = driveJoystick.getThrottle();
     	double throttle = driveJoystick.getZ() * (-.25) + .75;
     	//madcatz joystick switches throttle and z
@@ -201,19 +203,21 @@ public class DriveSystem extends Subsystem {
     }
 
 	public void makeWheels() {
-		leftFrontMec = new MecanumSpeedConrtoller(leftFront, 1., 1., frontCompensation, false);
-    	rightFrontMec = new MecanumSpeedConrtoller(rightFront, -1., 1., frontCompensation, false);
-    	leftRearMec = new MecanumSpeedConrtoller(leftRear, -1., 1., aftCompensation, false);
-    	rightRearMec = new MecanumSpeedConrtoller(rightRear, 1., 1., aftCompensation, false);
+		leftFrontMec = new MecanumSpeedConrtoller(leftFront, 1.0, 1.0, frontCompensation, false);
+    	rightFrontMec = new MecanumSpeedConrtoller(rightFront, -1.0, 1.0, frontCompensation, false);
+    	leftRearMec = new MecanumSpeedConrtoller(leftRear, -1.0, 1.0, aftCompensation, false);
+    	rightRearMec = new MecanumSpeedConrtoller(rightRear, 1.0, 1.0, aftCompensation, false);
     	
     	sketchySpeedConrtollers[0] = leftFrontMec;
     	sketchySpeedConrtollers[1] = rightFrontMec;
     	sketchySpeedConrtollers[2] = leftRearMec;
     	sketchySpeedConrtollers[3] = rightRearMec;
+    	
+    	SmartDashboard.putString("make wheels", "making wheels");
 	}
     
     private void setAll(MecanumSpeedConrtoller[] sketchySpeedConrtollers, double xVal, double yVal, double throttle) {
-    	setDriveMode();
+    	//setDriveMode();
     	for (int i = 0; i < sketchySpeedConrtollers.length; i++) {
 			sketchySpeedConrtollers[i].set(minimumTolerance(xVal), minimumTolerance(yVal), throttle);
 		}
@@ -221,9 +225,9 @@ public class DriveSystem extends Subsystem {
     
     private void homemadeZ(MecanumSpeedConrtoller[] sketchySpeedConrtollers, double joystickZ) {
     	sketchySpeedConrtollers[0].spinSet(reverseRotation(joystickZ));
-    	sketchySpeedConrtollers[1].spinSet(reverseRotation(-joystickZ));
+    	sketchySpeedConrtollers[1].spinSet(reverseRotation(- joystickZ));
     	sketchySpeedConrtollers[2].spinSet(reverseRotation(joystickZ));
-    	sketchySpeedConrtollers[3].spinSet(reverseRotation(-joystickZ));
+    	sketchySpeedConrtollers[3].spinSet(reverseRotation(- joystickZ));
     }
     
     /**
@@ -270,7 +274,7 @@ public class DriveSystem extends Subsystem {
     	return startTime = System.currentTimeMillis() - startTime;
     }
     
-    private void circularJoystick(Joystick driveJoystick) {
+    /*private void circularJoystick(Joystick driveJoystick) {
     	double joystickX = driveJoystick.getX();
     	double joystickY = driveJoystick.getY();
     	double magnitude = driveJoystick.getMagnitude();
@@ -281,12 +285,18 @@ public class DriveSystem extends Subsystem {
 			return;
 		}
     	circularXVal = joystickX;
-    	circularYVal = joystickY;
+    	circularYVal = -joystickY;
     }
+    */
     
-   public void testMecanumDriveTopRight() {
-	   leftFrontMec.testSet(.7, -.7, 1.0, "diagonal top right left front", 1.0);
-	   rightRearMec.testSet(.7, -.7, 1.0, "diagonal top right right rear", 1.0);
+   /*public void testMecanumDriveTopRight() {
+	   leftFrontMec.testSet(.1, .2, 1.0, "diagonal top right left front", .3);
+	   leftFrontMec.set(.1, .2, 1.0);
+	   rightFrontMec.testSet(.1, .2, 1.0, "diagnoal top right right front", .1);
+	   rightFrontMec.set(.1, .2, 1.0);
+	   Joystick driveJoystick = Robot.oi.driveStick;
+	   displayDriveInfo(driveJoystick);
    }
+   */
 }
 

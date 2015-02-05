@@ -33,7 +33,6 @@ import org.usfirst.frc2538.RecycleRush2538.subsystems.*;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
-    private double setting;
     public static double frontHeavy;
     public static double balanced;
     public static double aftHeavy;
@@ -78,13 +77,12 @@ public class Robot extends IterativeRobot {
         /***
          * The mDns box in smartdashboard preferences needs to be checked
          */
-        setting = prefs.getDouble("Setting", -1.0);
-        frontHeavy = prefs.getDouble("frontHeavy", 1);
-        balanced = prefs.getDouble("balanced", 1);
-        aftHeavy = prefs.getDouble("aftHeavy", 1);
         Robot.driveSystem.makeWheels();
+        frontHeavy = prefs.getDouble("frontHeavy", 1.0);
+        balanced = prefs.getDouble("balanced", 1.0);
+        aftHeavy = prefs.getDouble("aftHeavy", 1.0);
     }
-
+		
     /**
      * This function is called when the disabled button is hit.
      * You can use it to reset subsystems before shutting down.
@@ -125,7 +123,6 @@ public class Robot extends IterativeRobot {
         
         //setting = Preferences.getInstance().getDouble("Setting", -1.0); 
         //Preferences.getInstance().save();
-    	SmartDashboard.putNumber("Output", setting);
     	
     }
 

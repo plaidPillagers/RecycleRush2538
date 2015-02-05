@@ -21,9 +21,10 @@ public class MecanumSpeedConrtoller {
 	
 	public void setCompensation(double newComp) {
 		if(inverted) {
-			compensation = -newComp;
+			compensation = Math.abs(newComp) * -1;
+			// just to be causious using absolute value
 		}
-		else{
+		else {
 			compensation = newComp;
 		}
 	}
@@ -46,6 +47,6 @@ public class MecanumSpeedConrtoller {
 		if (compensation * dotProduct(xVal, yVal, throttle) == expectedValue) {
 			SmartDashboard.putBoolean(testName, true);
 		}
-		SmartDashboard.putString(testName, "failed: " + (compensation * dotProduct(xVal, yVal, throttle)));
+		SmartDashboard.putString(testName, "failed: " + (compensation * dotProduct(xVal, yVal, throttle)) + "compensation:" + compensation);
 	}
 }

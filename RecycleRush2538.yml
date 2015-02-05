@@ -19,7 +19,7 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: &id003 [PWMOutput]
-            value: '2'
+            value: '3'
         Base: Speed Controller
         Name: leftFront
       - Children: []
@@ -35,7 +35,7 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: *id003
-            value: '3'
+            value: '1'
         Base: Speed Controller
         Name: rightFront
       - Children: []
@@ -51,7 +51,7 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: *id003
-            value: '1'
+            value: '4'
         Base: Speed Controller
         Name: leftRear
       - Children: []
@@ -67,7 +67,7 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: *id003
-            value: '4'
+            value: '2'
         Base: Speed Controller
         Name: rightRear
       Properties:
@@ -283,7 +283,7 @@ Children:
       Name: rightRearEncoder
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: driveHomemadeMecanum}
     Base: Subsystem
     Name: DriveSystem
   - Children:
@@ -785,7 +785,7 @@ Children:
   - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: DriveSystem}
+        name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
@@ -886,14 +886,6 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: driveHomemadeMecanum
-  - Children: []
-    Properties:
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: None}
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
-    Base: Command
-    Name: testDiagonal
   Properties: {}
   Base: Commands
   Name: Commands
