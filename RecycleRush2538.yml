@@ -132,7 +132,7 @@ Children:
           validators: &id007 [DigitalChannel]
           value: '3'
       Base: Ultrasonic
-      Name: port
+      Name: portRangeFinder
     - Children: []
       Properties:
         Ping Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
@@ -148,7 +148,7 @@ Children:
           validators: *id007
           value: '5'
       Base: Ultrasonic
-      Name: starboard
+      Name: starboardRangeFinder
     - Children: []
       Properties:
         Channel A Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
@@ -281,6 +281,22 @@ Children:
           value: '13'
       Base: Quadrature Encoder
       Name: rightRearEncoder
+    - Children: []
+      Properties:
+        Ping Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id004
+          default: '0'
+          name: Ping Channel (Digital)
+          validators: *id005
+          value: '14'
+        Echo Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '0'
+          name: Echo Channel (Digital)
+          validators: *id007
+          value: '15'
+      Base: Ultrasonic
+      Name: forwardRangeFinder
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: driveHomemadeMecanum}
@@ -294,7 +310,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Victor
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '0'
@@ -310,7 +326,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Victor
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '0'
@@ -362,13 +378,13 @@ Children:
           default: '0'
           name: Reverse Channel (Solenoid)
           validators: &id021 [Solenoid]
-          value: '7'
+          value: '3'
         Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: &id022 ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
           name: Forward Channel (Solenoid)
           validators: &id023 [Solenoid]
-          value: '6'
+          value: '2'
       Base: Double Solenoid
       Name: configActuator
     Properties:
@@ -432,35 +448,7 @@ Children:
           validators: *id023
           value: '0'
       Base: Double Solenoid
-      Name: lifting1
-    - Children: []
-      Properties:
-        Forward PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id016
-          default: '0'
-          name: Forward PCM (Solenoid)
-          validators: *id017
-          value: '0'
-        Reverse PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id018
-          default: '0'
-          name: Reverse PCM (Solenoid)
-          validators: *id019
-          value: '0'
-        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id020
-          default: '0'
-          name: Reverse Channel (Solenoid)
-          validators: *id021
-          value: '3'
-        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id022
-          default: '0'
-          name: Forward Channel (Solenoid)
-          validators: *id023
-          value: '2'
-      Base: Double Solenoid
-      Name: lifting2
+      Name: lifting
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
@@ -488,23 +476,6 @@ Children:
         name: Default Command, type: Command, validators: null, value: testTalon}
     Base: Subsystem
     Name: Test
-  - Children:
-    - Children: []
-      Properties:
-        PCM ID: !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
-            '12', '13', '14', '15', '16', '17', '18', '19', '20']
-          default: '0'
-          name: PCM ID
-          validators: [PCMCompID]
-          value: '0'
-      Base: Compressor
-      Name: Compressor
-    Properties:
-      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
-    Base: Subsystem
-    Name: AirCompressor
   Properties: {}
   Base: Subsystems
   Name: Subsystems

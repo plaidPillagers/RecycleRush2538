@@ -20,7 +20,7 @@ import org.usfirst.frc2538.RecycleRush2538.Robot;
  *
  */
 public class  intakeCommand extends Command {
-	private int debugCounter = 0;
+	//private int debugCounter = 0;
 
     public intakeCommand() {
         // Use requires() here to declare subsystem dependencies
@@ -33,12 +33,12 @@ public class  intakeCommand extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putString("Intake Intialized", "I'm initialized");
+    	//SmartDashboard.putString("Intake Intialized", "I'm initialized");
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putString("Intake Execute", "in execute" + debugCounter);
-    	debugCounter++;
+    	//SmartDashboard.putString("Intake Execute", "in execute" + debugCounter);
+    	//debugCounter++;
     	//System.out.println("Executing intake command");
     	Robot.intake.limitSwitchIntake();
     }
@@ -46,16 +46,16 @@ public class  intakeCommand extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         if (!Robot.intake.okay()){
-        	SmartDashboard.putString("Intake IsFinished", "in isFinished: true");
+        	//SmartDashboard.putString("Intake IsFinished", "in isFinished: true");
         	return true;
 		}
-        SmartDashboard.putString("Intake Command", "in isFinished: false");
+       // SmartDashboard.putString("Intake Command", "in isFinished: false");
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	SmartDashboard.putString("Intaked End", "in end");
+    	//SmartDashboard.putString("Intaked End", "in end");
     	Robot.intake.stop();
     }
 
