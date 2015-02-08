@@ -67,7 +67,10 @@ public class DriveSystem extends Subsystem {
     public double forwardDriveProportion = Robot.frontHeavy;
     public double balancedDriveProportion = Robot.balanced;
     public double aftDriveProportion = Robot.aftHeavy;
-    public int driveMode  = 2;
+    public final int FORWARDDRIVE = 1;
+    public final int BALANCEDDRIVE = 2;
+    public final int AFTDRIVE = 3;
+    public int driveMode  = BALANCEDDRIVE;
     MecanumSpeedConrtoller[] sketchySpeedConrtollers = new MecanumSpeedConrtoller[4];
     
     int WHEEL_RADIUS = 3;
@@ -236,7 +239,7 @@ public class DriveSystem extends Subsystem {
 	}
     
     private void setAll(MecanumSpeedConrtoller[] sketchySpeedConrtollers, double xVal, double yVal, double throttle) {
-    	//setDriveMode();
+    	setDriveMode();
     	leftFrontMec.set(xVal, yVal, throttle);
     	rightFrontMec.set(xVal,yVal, -throttle);
     	leftRearMec.set(xVal, yVal, throttle);
@@ -257,21 +260,19 @@ public class DriveSystem extends Subsystem {
      * 3 = aft drive mode
      */
     private void setDriveMode() {
-    	if (driveMode == 1) {
+    	if (driveMode == FORWARDDRIVE) {
 			frontCompensation = 1;
 			aftCompensation = forwardDriveProportion;
-			setForwardAftCompensations();
 		}
-    	else if(driveMode == 2) {
+    	else if(driveMode == BALANCEDDRIVE) {
     		frontCompensation = balancedDriveProportion;
     		aftCompensation = balancedDriveProportion;
-    		setForwardAftCompensations();
     	}
     	else{
     		frontCompensation = aftDriveProportion;
     		aftCompensation = 1;
-    		setForwardAftCompensations();
     	}
+    	setForwardAftCompensations();
     }
     
     private void setForwardAftCompensations() {

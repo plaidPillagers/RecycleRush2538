@@ -208,11 +208,11 @@ public class DriveSystem extends Subsystem {
     	double throttle = driveJoystick.getZ() * (-.25) + .75;
     	//madcatz joystick switches throttle and z
     	if (isTwisted) {
-    		homemadeZ(sketchySpeedConrtollers, joystickZ);
+    		homemadeZ(joystickZ);
 		}
     	else{
     		if (isInverted) {
-    			setAll(sketchySpeedConrtollers, -joystickX, -joystickY, -throttle);
+    			setAll(sketchySpeedConrtollers, -joystickX, -joystickY, throttle);
 			}
     		else {
     			setAll(sketchySpeedConrtollers, joystickX, joystickY, throttle);
@@ -244,11 +244,11 @@ public class DriveSystem extends Subsystem {
 		
     }
     
-    private void homemadeZ(MecanumSpeedConrtoller[] sketchySpeedConrtollers, double joystickZ) {
-    	sketchySpeedConrtollers[0].spinSet(reverseRotation(joystickZ));
-    	sketchySpeedConrtollers[1].spinSet(reverseRotation(- joystickZ));
-    	sketchySpeedConrtollers[2].spinSet(reverseRotation(joystickZ));
-    	sketchySpeedConrtollers[3].spinSet(reverseRotation(- joystickZ));
+    private void homemadeZ(double joystickZ) {
+    	leftFrontMec.spinSet(joystickZ);
+    	rightFrontMec.spinSet(joystickZ);
+    	leftRearMec.spinSet(joystickZ);
+    	rightRearMec.spinSet(joystickZ);
     }
     
     /**
