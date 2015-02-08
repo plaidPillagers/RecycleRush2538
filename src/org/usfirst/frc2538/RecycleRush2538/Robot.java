@@ -99,6 +99,9 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+        frontHeavy = prefs.getDouble("frontHeavy", 1.0);
+    	balanced = prefs.getDouble("balanced", 1.0);
+    	aftHeavy = prefs.getDouble("aftHeavy", 1.0);
     }
 
     /**
@@ -114,6 +117,9 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        frontHeavy = prefs.getDouble("frontHeavy", 1.0);
+    	balanced = prefs.getDouble("balanced", 1.0);
+    	aftHeavy = prefs.getDouble("aftHeavy", 1.0);
     }
 
     /**

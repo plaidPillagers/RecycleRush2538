@@ -260,6 +260,11 @@ public class DriveSystem extends Subsystem {
      * 3 = aft drive mode
      */
     private void setDriveMode() {
+    	forwardDriveProportion = Robot.frontHeavy;
+    	balancedDriveProportion = Robot.balanced;
+    	aftDriveProportion = Robot.aftHeavy;
+    	SmartDashboard.putNumber("front drive proportion", forwardDriveProportion);
+    	
     	if (driveMode == FORWARDDRIVE) {
 			frontCompensation = 1;
 			aftCompensation = forwardDriveProportion;
