@@ -208,7 +208,7 @@ public class DriveSystem extends Subsystem {
     	double joystickX = driveJoystick.getX();
     	double joystickY = - driveJoystick.getY();
     	double joystickZ = driveJoystick.getThrottle();
-    	double throttle = driveJoystick.getZ() * (-.25) + .75;
+    	double throttle = driveJoystick.getZ() * (-.4) + .6;//throttles between .2 and 1
     	//madcatz joystick switches throttle and z
     	if (isTwisted) {
     		homemadeZ(joystickZ);

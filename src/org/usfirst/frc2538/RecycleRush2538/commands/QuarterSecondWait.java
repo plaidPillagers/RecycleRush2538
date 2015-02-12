@@ -17,9 +17,9 @@ import org.usfirst.frc2538.RecycleRush2538.Robot;
 /**
  *
  */
-public class  SetAft extends Command {
+public class  QuarterSecondWait extends Command {
 
-    public SetAft() {
+    public QuarterSecondWait() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -34,12 +34,11 @@ public class  SetAft extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSystem.driveMode = Robot.driveSystem.AFTDRIVE;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
