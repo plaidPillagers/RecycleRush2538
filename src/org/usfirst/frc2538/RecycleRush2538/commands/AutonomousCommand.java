@@ -10,7 +10,10 @@
 
 
 package org.usfirst.frc2538.RecycleRush2538.commands;
+import org.usfirst.frc2538.RecycleRush2538.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -18,6 +21,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCommand extends CommandGroup {
     
     public  AutonomousCommand() {
+    	String input = Robot.prefs.getString("auto", "no string");
+    	SmartDashboard.putString("auto", input);
     	addSequential(new SetBalanced());
     	addSequential(new AutoDriveForward(), 2);
     	addSequential(new GetThing());

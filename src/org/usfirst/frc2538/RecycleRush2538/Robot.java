@@ -11,25 +11,15 @@
 
 package org.usfirst.frc2538.RecycleRush2538;
 
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.usfirst.frc2538.RecycleRush2538.commands.*;
 import org.usfirst.frc2538.RecycleRush2538.subsystems.*;
 
-import com.ni.vision.NIVision;
-import com.ni.vision.NIVision.DrawMode;
-import com.ni.vision.NIVision.Image;
-import com.ni.vision.NIVision.ShapeMode;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -44,7 +34,7 @@ public class Robot extends IterativeRobot {
     public static double frontHeavy;
     public static double balanced;
     public static double aftHeavy;
-    Preferences prefs = Preferences.getInstance();
+    public static Preferences prefs = Preferences.getInstance();
     
     public static String defaultAutonomous = "";
     public static String autonomousSettings;

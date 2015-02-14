@@ -62,20 +62,27 @@ public class  ToStackOrNotStackCommand extends Command {
     		//SmartDashboard.putString("2Stack", "stack");
     		//SmartDashboard.putBoolean("loweredLift", loweredLift);
     		if (!loweredLift) {
-    			SmartDashboard.putString("3Stack", "lowering lift");
-				//Robot.lift.lowerLift();
-    			Robot.lift.lifting.set(DoubleSolenoid.Value.kReverse);
-				loweredLift = true;
-			}
-    		else if (time > 500 && !extendedTrident) {
+				Robot.lift.lowerLift();
+    			Robot.lift.lifting.set(DoubleSolenoid.Value.kForward);				
+			} 
+    		else if (time > 100) {
+    			SmartDashboard.putString("2Stack", "done lowering lift");
+    			loweredLift = true;
+    		}
+    		else if (loweredLift && !extendedTrident) {
     			SmartDashboard.putString("2Stack", "extend trident");
     			Robot.lift.extendTrident();
+    		}
+    		else if(time > 200) {
+    			SmartDashboard.putString("2Stack", "done extending");
     			extendedTrident = true;
     		}
     		else if (Robot.intake.okay()) {
+    			SmartDashboard.putString("2Stack", "intake");
     			Robot.intake.limitSwitchIntake();
     		}
     		else {
+    			SmartDashboard.putString("2Stack", "done");
     			isDone = true;
     		}
 		}
