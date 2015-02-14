@@ -17,9 +17,9 @@ import org.usfirst.frc2538.RecycleRush2538.Robot;
 /**
  *
  */
-public class  DisplayIntakeInfoCommand extends Command {
+public class  ToteConfigCommand extends Command {
 
-    public DisplayIntakeInfoCommand() {
+    public ToteConfigCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -35,12 +35,12 @@ public class  DisplayIntakeInfoCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.displayEncoders();
+    	Robot.intake.toteConfigure();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

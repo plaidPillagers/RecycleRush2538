@@ -19,12 +19,13 @@ public class StackThing extends CommandGroup {
     
     public  StackThing() {
     	addSequential(new intakeCommand());
-    	addSequential(new liftActuator());
-    	addSequential(new tridentActuator());
+    	addSequential(new ContainerConfigCommand());
+    	addSequential(new LowerLift());
+    	addSequential(new ExtendTridentCommand());
     	addSequential(new intakeCommand());
-    	addSequential(new liftActuator());
-    	addSequential(new QuarterSecondWait(), .25);
-    	addSequential(new tridentActuator());
+    	addSequential(new RaiseLift());
+    	addSequential(new Wait(), .25);
+    	addSequential(new RetractTridentCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

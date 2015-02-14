@@ -56,13 +56,13 @@ public class Intake extends Subsystem {
 
 	public void intake() {
 		leftWheel.set(INTAKE_SPEED);
-		rightWheel.set(INTAKE_SPEED);
+		rightWheel.set(-INTAKE_SPEED);
 	}
 
 	public void eject() {
 		SmartDashboard.putString("eject method", "eject called");
 		leftWheel.set(EJECT_SPEED);
-		rightWheel.set(EJECT_SPEED);
+		rightWheel.set(-EJECT_SPEED);
 		displayEncoders();
 	}
 
@@ -74,7 +74,7 @@ public class Intake extends Subsystem {
 	public void spin() {
 		// spinning clockwise
 		leftWheel.set(LEFT_SPIN);
-		rightWheel.set(RIGHT_SPIN);
+		rightWheel.set(-RIGHT_SPIN);
 		displayEncoders();
 	}
 	
@@ -97,7 +97,7 @@ public class Intake extends Subsystem {
 				return true;
 			}
 			return false;
-		} else if (!containerSwitch.get()) {
+		} else if (toteSwitch.get()) {
 			return true;
 		}
 		return false;
@@ -121,5 +121,17 @@ public class Intake extends Subsystem {
 		SmartDashboard.putNumber("Left intake encoder", leftIntakeSpeed);
 		SmartDashboard.putNumber("Right intake encoder", rightIntakeSpeed);
 	}
- 
+	
+	public void conatinerConfigure() {
+		configActuator.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void toteConfigure() {
+		configActuator.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void runIntakeWheels() {
+		leftWheel.set(INTAKE_SPEED);
+		rightWheel.set(-INTAKE_SPEED);
+	}
 }

@@ -41,11 +41,14 @@ import com.ni.vision.NIVision.ShapeMode;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
-    Preferences prefs;
     public static double frontHeavy;
     public static double balanced;
     public static double aftHeavy;
-    //Preferences prefs = Preferences.getInstance();
+    Preferences prefs = Preferences.getInstance();
+    
+    public static String defaultAutonomous = "";
+    public static String autonomousSettings;
+    
     
 
     public static OI oi;
@@ -77,6 +80,8 @@ public class Robot extends IterativeRobot {
     	frontHeavy = prefs.getDouble("frontHeavy", 1.0);
     	balanced = prefs.getDouble("balanced", 1.0);
     	aftHeavy = prefs.getDouble("aftHeavy", 1.0);
+    	
+    	autonomousSettings = prefs.getString("autonomous", defaultAutonomous);
     	/*
     	frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
     	session = NIVision.IMAQdxOpenCamera("cam0", NIVision.IMAQdxCameraControlMode.CameraControlModeController);

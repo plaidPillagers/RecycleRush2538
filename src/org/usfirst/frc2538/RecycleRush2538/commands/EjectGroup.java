@@ -20,10 +20,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class EjectGroup extends CommandGroup {
     
     public  EjectGroup() {
-    	addSequential(new liftActuator());
-    	addSequential(new QuarterSecondWait(), 1);
-    	addSequential(new tridentActuator());
-    	addSequential(new eject(), 1);
+    	addSequential(new ContainerConfigCommand());
+    	addSequential(new LowerLift());
+    	addSequential(new Wait(), 1);
+    	addSequential(new ExtendTridentCommand());
+    	addSequential(new ToteConfigCommand());
+    	addSequential(new eject(), 1.5);
     	Robot.intake.isFirstThing = true;
         // Add Commands here:
         // e.g. addSequential(new Command1());

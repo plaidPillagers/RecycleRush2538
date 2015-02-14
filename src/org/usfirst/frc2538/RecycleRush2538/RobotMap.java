@@ -102,8 +102,8 @@ public class RobotMap {
         driveSystemforwardRangeFinder = new Ultrasonic(14, 15);
         LiveWindow.addSensor("DriveSystem", "forwardRangeFinder", driveSystemforwardRangeFinder);
         
-        intakeleftWheel = new Victor(5);
-        LiveWindow.addActuator("Intake", "leftWheel", (Victor) intakeleftWheel);
+        intakeleftWheel = new Talon(5);
+        LiveWindow.addActuator("Intake", "leftWheel", (Talon) intakeleftWheel);
         
         intakerightWheel = new Victor(6);
         LiveWindow.addActuator("Intake", "rightWheel", (Victor) intakerightWheel);

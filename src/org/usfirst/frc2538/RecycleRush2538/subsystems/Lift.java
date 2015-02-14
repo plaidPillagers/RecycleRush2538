@@ -64,6 +64,22 @@ public class Lift extends Subsystem {
     		liftingActuatorRaised = true;
 		}
 	}
+    
+    public void extendTrident() {
+    	trident.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    public void retractTrident() {
+    	trident.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+    public void raiseLift() {
+    	lifting.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+    public void lowerLift() {
+    	lifting.set(DoubleSolenoid.Value.kForward);
+    }
 }
 
 

@@ -10,7 +10,6 @@
 
 
 package org.usfirst.frc2538.RecycleRush2538.commands;
-
 import org.usfirst.frc2538.RecycleRush2538.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -18,16 +17,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class GetThing extends CommandGroup {
+public class SmartStack extends CommandGroup {
     
-    public  GetThing() {
-    	addSequential(new ToteConfigCommand());
-    	addSequential(new intakeCommand());
-    	addSequential(new ContainerConfigCommand());
-    	addSequential(new RaiseLift());
-    	addSequential(new Wait(), .25);
-    	addSequential(new RetractTridentCommand());
-    	Robot.intake.isFirstThing = false;
+    public  SmartStack() {
+    	if (Robot.intake.isFirstThing) {
+			new GetThing();
+		}
+    	else{
+    		new StackThing();
+    	}
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
