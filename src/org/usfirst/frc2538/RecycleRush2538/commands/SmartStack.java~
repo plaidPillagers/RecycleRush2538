@@ -20,12 +20,25 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SmartStack extends CommandGroup {
     
     public  SmartStack() {
+    	
+    	// doesn't work because constructors only run once
+    	/*
     	if (Robot.intake.isFirstThing) {
 			new GetThing();
 		}
     	else{
     		new StackThing();
     	}
+    	*/
+    	addSequential(new ToteConfigCommand());
+    	addSequential(new intakeCommand());
+    	addSequential(new ContainerConfigCommand());
+    	addSequential(new ToStackOrNotStackCommand());
+    	addSequential(new RaiseLift());
+    	addSequential(new Wait(), .25);
+    	addSequential(new RetractTridentCommand());
+    	
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
