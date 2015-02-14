@@ -11,6 +11,7 @@
 
 package org.usfirst.frc2538.RecycleRush2538.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -54,15 +55,20 @@ public class  ToStackOrNotStackCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putString("2Stack", "executing");
+    	//SmartDashboard.putString("2Stack", "executing");
+    	SmartDashboard.putBoolean("loweredLift", loweredLift);
     	long time = timer.getElapsedTime();
     	if (!isDone) {
-    		SmartDashboard.putString("2Stack", "stack");
+    		//SmartDashboard.putString("2Stack", "stack");
+    		//SmartDashboard.putBoolean("loweredLift", loweredLift);
     		if (!loweredLift) {
-				Robot.lift.lowerLift();
+    			SmartDashboard.putString("3Stack", "lowering lift");
+				//Robot.lift.lowerLift();
+    			Robot.lift.lifting.set(DoubleSolenoid.Value.kReverse);
 				loweredLift = true;
 			}
     		else if (time > 500 && !extendedTrident) {
+    			SmartDashboard.putString("2Stack", "extend trident");
     			Robot.lift.extendTrident();
     			extendedTrident = true;
     		}
