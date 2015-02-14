@@ -104,7 +104,7 @@ public class OI {
         balancedButton = new JoystickButton(driveStick, 5);
         balancedButton.whenPressed(new SetBalanced());
         intakeButton = new JoystickButton(driveStick, 6);
-        intakeButton.whenPressed(new GetThing());
+        intakeButton.whenPressed(new SmartStack());
         twistButton = new JoystickButton(driveStick, 7);
         twistButton.whileHeld(new twist());
         invertDriveButton = new JoystickButton(driveStick, 1);

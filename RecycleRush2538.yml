@@ -627,7 +627,7 @@ Children:
           name: Command
           type: Command
           validators: *id025
-          value: GetThing
+          value: SmartStack
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id026
           default: whileHeld

@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
     public static Intake intake;
     public static Lift lift;
     public static Test test;
-    public static Timer timer;
+    public static OurTimer ourTimer;
     public static Camera camera;
     public static PowerDistributionBoard powerDistributionBoard;
 
@@ -102,7 +102,7 @@ public class Robot extends IterativeRobot {
         intake = new Intake();
         lift = new Lift();
         test = new Test();
-        timer = new Timer();
+        ourTimer = new OurTimer();
         camera = new Camera();
         powerDistributionBoard = new PowerDistributionBoard();
 

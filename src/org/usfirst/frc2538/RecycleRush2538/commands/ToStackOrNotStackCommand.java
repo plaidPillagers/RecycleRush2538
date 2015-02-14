@@ -12,6 +12,7 @@
 package org.usfirst.frc2538.RecycleRush2538.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2538.RecycleRush2538.Robot;
 import org.usfirst.frc2538.RecycleRush2538.subsystems.OurTimer;
@@ -53,8 +54,10 @@ public class  ToStackOrNotStackCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putString("2Stack", "executing");
     	long time = timer.getElapsedTime();
     	if (!isDone) {
+    		SmartDashboard.putString("2Stack", "stack");
     		if (!loweredLift) {
 				Robot.lift.lowerLift();
 				loweredLift = true;
