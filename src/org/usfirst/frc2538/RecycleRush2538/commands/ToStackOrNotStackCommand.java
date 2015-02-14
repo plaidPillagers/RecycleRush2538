@@ -59,34 +59,33 @@ public class  ToStackOrNotStackCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//SmartDashboard.putString("2Stack", "executing");
-    	SmartDashboard.putBoolean("loweredLift", loweredLift);
+    	//SmartDashboard.putBoolean("loweredLift", loweredLift);
     	long time = timer.getElapsedTime();
-    	SmartDashboard.putNumber("time", time);
+    	//SmartDashboard.putNumber("time", time);
     	if (!isDone) {
     		//SmartDashboard.putString("2Stack", "stack");
     		//SmartDashboard.putBoolean("loweredLift", loweredLift);
     		if (!loweredLift && time < 500) {
-				Robot.lift.lowerLift();
-    			Robot.lift.lifting.set(DoubleSolenoid.Value.kForward);				
+				Robot.lift.lowerLift();			
 			} 
     		else if (!loweredLift) {
-    			SmartDashboard.putString("2Stack", "done lowering lift");
+    			//SmartDashboard.putString("2Stack", "done lowering lift");
     			loweredLift = true;
     		}
     		else if (loweredLift && !extendedTrident && time < 1000) {
-    			SmartDashboard.putString("2Stack", "extend trident");
+    			//SmartDashboard.putString("2Stack", "extend trident");
     			Robot.lift.extendTrident();
     		}
     		else if(!extendedTrident) {
-    			SmartDashboard.putString("2Stack", "done extending");
+    			//SmartDashboard.putString("2Stack", "done extending");
     			extendedTrident = true;
     		}
     		else if (Robot.intake.okay()) {
-    			SmartDashboard.putString("2Stack", "intake");
+    			//SmartDashboard.putString("2Stack", "intake");
     			Robot.intake.limitSwitchIntake();
     		}
     		else {
-    			SmartDashboard.putString("2Stack", "done");
+    			//SmartDashboard.putString("2Stack", "done");
     			isDone = true;
     		}
 		}
