@@ -34,7 +34,8 @@ public class Robot extends IterativeRobot {
     public static double frontHeavy;
     public static double balanced;
     public static double aftHeavy;
-    public static Preferences prefs = Preferences.getInstance();
+    public Preferences prefs;
+    public static String autoSettings;
     
     public static String defaultAutonomous = "";
     public static String autonomousSettings;
@@ -67,9 +68,11 @@ public class Robot extends IterativeRobot {
     	/***
     	 * The mDns box in smartdashboard preferences needs to be checked
     	 */
+    	prefs = Preferences.getInstance();
     	frontHeavy = prefs.getDouble("frontHeavy", 1.0);
     	balanced = prefs.getDouble("balanced", 1.0);
     	aftHeavy = prefs.getDouble("aftHeavy", 1.0);
+    	autoSettings = prefs.getString("auto", "no string");
     	
     	autonomousSettings = prefs.getString("autonomous", defaultAutonomous);
     	/*

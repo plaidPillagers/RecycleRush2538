@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutonomousCommand extends CommandGroup {
     
     public  AutonomousCommand() {
-    	String input = Robot.prefs.getString("auto", "no string");
+    	String input = Robot.autoSettings;
     	SmartDashboard.putString("auto", input);
     	addSequential(new SetBalanced());
     	addSequential(new AutoDriveForward(), 2);
