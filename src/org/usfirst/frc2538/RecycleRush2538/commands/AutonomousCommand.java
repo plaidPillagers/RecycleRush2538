@@ -22,15 +22,20 @@ public class AutonomousCommand extends CommandGroup {
     
     public  AutonomousCommand() {
     	String input = Robot.autoSettings;
-    	SmartDashboard.putString("auto", input);
+    	if (input.charAt(0) == '1') {
+    		SmartDashboard.putString("auto mode:", "get thing");
     	addSequential(new SetBalanced());
-    	addSequential(new AutoDriveForward(), 2);
+    	//addSequential(new AutoDriveForward(), 2);
     	addSequential(new GetThing());
-    	addSequential(new AutoDriveForward(), 2);
-    	addSequential(new StackThing());
-    	addSequential(new AutoDriveForward(), 2);
-    	addSequential(new StackThing());
-    	addSequential(new AutoDriveSideways(), 2);
+    	//addSequential(new AutoDriveForward(), 2);
+    	//addSequential(new StackThing());
+    	//addSequential(new AutoDriveForward(), 2);
+    	//addSequential(new StackThing());
+    	} else {
+    		SmartDashboard.putString("auto mode:", "do nothing");
+    	}
+    	SmartDashboard.putString("auto auto", input);
+    	//addSequential(new AutoDriveSideways(), 2);
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

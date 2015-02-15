@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2538.RecycleRush2538.commands.*;
 import org.usfirst.frc2538.RecycleRush2538.subsystems.*;
@@ -123,6 +124,8 @@ public class Robot extends IterativeRobot {
      */
     public void disabledInit(){
     	intake.init();
+    	autoSettings = prefs.getString("auto", "no string");
+    	SmartDashboard.putString("auto", autoSettings);
     }
 
     public void disabledPeriodic() {
@@ -131,6 +134,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	autoSettings = prefs.getString("auto", "no string");
+    	SmartDashboard.putString("auto", autoSettings);
         if (autonomousCommand != null) autonomousCommand.start();
         frontHeavy = prefs.getDouble("frontHeavy", 1.0);
     	balanced = prefs.getDouble("balanced", 1.0);
@@ -151,6 +156,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        autoSettings = prefs.getString("auto", "no string");
+        SmartDashboard.putString("auto", autoSettings);
         frontHeavy = prefs.getDouble("frontHeavy", 1.0);
     	balanced = prefs.getDouble("balanced", 1.0);
     	aftHeavy = prefs.getDouble("aftHeavy", 1.0);
