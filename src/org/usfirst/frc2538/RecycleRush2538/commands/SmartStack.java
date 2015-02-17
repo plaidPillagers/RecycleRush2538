@@ -34,7 +34,7 @@ public class SmartStack extends CommandGroup {
     	addSequential(new ContainerConfigCommand());
     	addSequential(new ToStackOrNotStackCommand());
     	addSequential(new RaiseLift());
-    	addSequential(new Wait(), .15);
+    	addSequential(new Wait(), .3);
     	addSequential(new RetractTridentCommand());
     	
     	

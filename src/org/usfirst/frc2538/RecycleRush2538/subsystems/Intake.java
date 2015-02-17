@@ -96,11 +96,11 @@ public class Intake extends Subsystem {
 	// this method returns true if its okay to move and false otherwise
 	public boolean okay() {
 		if (isToteConfig) {
-			if (firstToteSwitch.get()) {
+			if (!firstToteSwitch.get()) {
 				return true;
 			}
 			return false;
-		} else if (firstToteSwitch.get()) {
+		} else if (!firstToteSwitch.get()) {
 			return true;
 		}
 		return false;
@@ -111,7 +111,8 @@ public class Intake extends Subsystem {
 		// SmartDashboard.putBoolean("toteClear: ", okayTote());
 		if (okay()) {
 			intake();
-		} else {
+		} 
+		else {
 			stop();
 		}
 		displayEncoders();

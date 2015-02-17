@@ -22,8 +22,9 @@ public class EjectGroup extends CommandGroup {
     public  EjectGroup() {
     	addSequential(new ContainerConfigCommand());
     	addSequential(new LowerLift());
-    	addSequential(new Wait(), 1);
+    	addSequential(new Wait(), 0.4);
     	addSequential(new ExtendTridentCommand());
+    	addSequential(new Wait(), .25);
     	addSequential(new ToteConfigCommand());
     	addSequential(new eject(), 1.5);
     	Robot.intake.isFirstThing = true;

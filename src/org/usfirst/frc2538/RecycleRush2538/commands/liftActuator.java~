@@ -11,15 +11,17 @@
 
 package org.usfirst.frc2538.RecycleRush2538.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc2538.RecycleRush2538.Robot;
+import org.usfirst.frc2538.RecycleRush2538.RobotMap;
 
 /**
  *
  */
 public class  liftActuator extends Command {
 
-	private boolean hasExecuted = false;
     public liftActuator() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -32,28 +34,25 @@ public class  liftActuator extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	hasExecuted = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.lift.setLift();
-    	hasExecuted = true;
+    	//RobotMap.liftlifting.set(DoubleSolenoid.Value.kForward);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return hasExecuted;
+    	return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	hasExecuted = true;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	System.out.println("liftActuator interrupted");
     }
 }
