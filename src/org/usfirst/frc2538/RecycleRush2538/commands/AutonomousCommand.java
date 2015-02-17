@@ -21,24 +21,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutonomousCommand extends CommandGroup {
 
 	public AutonomousCommand() {
-		String input = Robot.autoSettings;
-		if (input.trim() == "1") {
+		//String input = Robot.autoSettings;
+		//if (input.trim() == "1") {
 			SmartDashboard.putString("auto mode:", "get thing");
 			addSequential(new SetBalanced());
-			addSequential(new AutoDriveForward(0.3), 2);
+			//addSequential(new AutoDriveForward(0.3), 2);
 			addSequential(new GetThing());
 			addSequential(new AutoDriveForward(0.3), 2);
 			addSequential(new StackThing());
 			addSequential(new AutoDriveForward(0.3), 2);
 			addSequential(new StackThing());
 			addSequential(new AutoDriveSideways(), 2);
-		}
-		else {
+		//}
+		/*else {
 			SmartDashboard.putString("auto mode:", "do nothing");
 			addSequential(new SetBalanced());
 			addSequential(new AutoDriveForward(0.8), 2);
 		}
 		SmartDashboard.putString("auto auto", input);
+		*/
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

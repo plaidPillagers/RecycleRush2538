@@ -123,6 +123,7 @@ public class Robot extends IterativeRobot {
     	intake.init();
     	autoSettings = prefs.getString("auto", "no string");
     	SmartDashboard.putString("auto", autoSettings);
+    	NIVision.IMAQdxStopAcquisition(session);
     }
 
     public void disabledPeriodic() {
