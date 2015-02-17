@@ -41,7 +41,6 @@ public class RobotMap {
     public static Ultrasonic driveSystemforwardRangeFinder;
     public static SpeedController intakeleftWheel;
     public static SpeedController intakerightWheel;
-    public static DigitalInput intakesubsequentToteSwitch;
     public static DigitalInput intakefirstToteSwitch;
     public static DoubleSolenoid intakeconfigActuator;
     public static Encoder intakeleftIntakeEncoder;
@@ -108,10 +107,7 @@ public class RobotMap {
         intakerightWheel = new Victor(6);
         LiveWindow.addActuator("Intake", "rightWheel", (Victor) intakerightWheel);
         
-        intakesubsequentToteSwitch = new DigitalInput(0);
-        LiveWindow.addSensor("Intake", "subsequentToteSwitch", intakesubsequentToteSwitch);
-        
-        intakefirstToteSwitch = new DigitalInput(1);
+        intakefirstToteSwitch = new DigitalInput(0);
         LiveWindow.addSensor("Intake", "firstToteSwitch", intakefirstToteSwitch);
         
         intakeconfigActuator = new DoubleSolenoid(0, 2, 3);      
