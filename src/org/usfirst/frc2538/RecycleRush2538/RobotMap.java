@@ -32,13 +32,10 @@ public class RobotMap {
     public static SpeedController driveSystemleftRear;
     public static SpeedController driveSystemrightRear;
     public static RobotDrive driveSystemRobotDrive41;
-    public static Ultrasonic driveSystemportRangeFinder;
-    public static Ultrasonic driveSystemstarboardRangeFinder;
     public static Encoder driveSystemleftFrontEncoder;
     public static Encoder driveSystemrightFrontEncoder;
     public static Encoder driveSystemleftRearEncoder;
     public static Encoder driveSystemrightRearEncoder;
-    public static Ultrasonic driveSystemforwardRangeFinder;
     public static SpeedController intakeleftWheel;
     public static SpeedController intakerightWheel;
     public static DigitalInput intakefirstToteSwitch;
@@ -76,12 +73,6 @@ public class RobotMap {
 
         driveSystemRobotDrive41.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         driveSystemRobotDrive41.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-        driveSystemportRangeFinder = new Ultrasonic(2, 3);
-        LiveWindow.addSensor("DriveSystem", "portRangeFinder", driveSystemportRangeFinder);
-        
-        driveSystemstarboardRangeFinder = new Ultrasonic(4, 5);
-        LiveWindow.addSensor("DriveSystem", "starboardRangeFinder", driveSystemstarboardRangeFinder);
-        
         driveSystemleftFrontEncoder = new Encoder(6, 7, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSystem", "leftFrontEncoder", driveSystemleftFrontEncoder);
         driveSystemleftFrontEncoder.setDistancePerPulse(4.71238899);
@@ -98,9 +89,6 @@ public class RobotMap {
         LiveWindow.addSensor("DriveSystem", "rightRearEncoder", driveSystemrightRearEncoder);
         driveSystemrightRearEncoder.setDistancePerPulse(4.71238899);
         driveSystemrightRearEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-        driveSystemforwardRangeFinder = new Ultrasonic(14, 15);
-        LiveWindow.addSensor("DriveSystem", "forwardRangeFinder", driveSystemforwardRangeFinder);
-        
         intakeleftWheel = new Talon(5);
         LiveWindow.addActuator("Intake", "leftWheel", (Talon) intakeleftWheel);
         
