@@ -14,12 +14,15 @@ package org.usfirst.frc2538.RecycleRush2538.subsystems;
 
 
 
+
 import org.usfirst.frc2538.RecycleRush2538.Robot;
 import org.usfirst.frc2538.RecycleRush2538.RobotMap;
 import org.usfirst.frc2538.RecycleRush2538.commands.*;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -54,6 +57,10 @@ public class DriveSystem extends Subsystem {
     private MecanumSpeedConrtoller rightFrontMec;
     private MecanumSpeedConrtoller leftRearMec;
     private MecanumSpeedConrtoller rightRearMec;
+    
+    private byte[] buffer; //I don't know why need this but the read() method used by I2C really wants it
+    private Port forwardRangeFinderPort;
+    private I2C forwardRangeFinder = new I2C(forwardRangeFinderPort, 224);
     
     private double JOYSTICK_TOLERANCE = .05;
     public boolean isInverted = false;
@@ -166,6 +173,9 @@ public class DriveSystem extends Subsystem {
     	double rearLeftSpeed = leftRearEncoder.getRate();
     	double rearRightSpeed = rightRearEncoder.getRate();
     	
+    	// The built in I2C method returns true if not found and false if found (Don't ask why)
+    	boolean forwardRangeFinderFound = !forwardRangeFinder.addressOnly();
+    	
     	SmartDashboard.putNumber("Joystick X: ", joyStickX);
     	SmartDashboard.putNumber("Joystick Y: ", joyStickY);
     	SmartDashboard.putNumber("Joystick Z: ", joyStickZ);
@@ -194,6 +204,8 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putNumber("right front encoder speed: ", rightFrontEncoderSpeed);
     	SmartDashboard.putNumber("left rear encoder speed: ", leftRearEncoderSpeed);
     	SmartDashboard.putNumber("right rear encoder speed: ", rightRearEncoderSpeed);
+    	
+    	SmartDashboard.putBoolean("ForwardRangeFinderFound", forwardRangeFinderFound);
     	
     }
     
@@ -288,6 +300,7 @@ public class DriveSystem extends Subsystem {
     	reset();
     	return encoder.getDistance() / elapseTime;
     }
+    
     private long reset() {
     	return startTime = 0;
     	
@@ -297,7 +310,38 @@ public class DriveSystem extends Subsystem {
     	return startTime = System.currentTimeMillis() - startTime;
     }
     
-    /*private void circularJoystick(Joystick driveJoystick) {
+    private void delay(int delayTime) {
+		reset(); 
+		
+		while (true) {
+			if (getElapsetime() > delayTime) {
+				return;
+			}
+		}
+	}
+
+	/*
+     * Used as a proof of concept for the I2C rangefinder 
+     */
+    public void displayRangeFinderDistance() {
+    	if (!forwardRangeFinder.addressOnly()) {
+    		forwardRangeFinder.write(204, 81);
+    		delay(80);
+    		forwardRangeFinder.read(225, 2, buffer);
+		}
+    	
+    	/*
+    	 * Since we currently don't know what the hell this buffer array is, I will print everything from it!
+    	 */
+    	for (int i = 0; i < buffer.length; i++) {
+			SmartDashboard.putNumber("Buffer[ " + i + " ]", buffer[i]);
+		}
+    }
+    
+    
+    
+
+	/*private void circularJoystick(Joystick driveJoystick) {
     	double joystickX = driveJoystick.getX();
     	double joystickY = driveJoystick.getY();
     	double magnitude = driveJoystick.getMagnitude();
