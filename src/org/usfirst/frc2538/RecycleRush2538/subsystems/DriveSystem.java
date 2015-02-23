@@ -59,8 +59,7 @@ public class DriveSystem extends Subsystem {
     private MecanumSpeedConrtoller rightRearMec;
     
     private byte[] buffer; //I don't know why need this but the read() method used by I2C really wants it
-    private Port forwardRangeFinderPort;
-    private I2C forwardRangeFinder = new I2C(forwardRangeFinderPort, 224);
+    private I2C forwardRangeFinder = new I2C(I2C.Port.kOnboard, 224);
     
     private double JOYSTICK_TOLERANCE = .05;
     public boolean isInverted = false;
@@ -174,7 +173,13 @@ public class DriveSystem extends Subsystem {
     	double rearRightSpeed = rightRearEncoder.getRate();
     	
     	// The built in I2C method returns true if not found and false if found (Don't ask why)
-    	boolean forwardRangeFinderFound = !forwardRangeFinder.addressOnly();
+    	/*
+    	try {
+    		boolean forwardRangeFinderFound = !forwardRangeFinder.addressOnly();
+		} catch (new NullPointerException()) {
+			// TODO: handle exception
+		}
+		*/
     	
     	SmartDashboard.putNumber("Joystick X: ", joyStickX);
     	SmartDashboard.putNumber("Joystick Y: ", joyStickY);
@@ -205,7 +210,7 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putNumber("left rear encoder speed: ", leftRearEncoderSpeed);
     	SmartDashboard.putNumber("right rear encoder speed: ", rightRearEncoderSpeed);
     	
-    	SmartDashboard.putBoolean("ForwardRangeFinderFound", forwardRangeFinderFound);
+    	//SmartDashboard.putBoolean("ForwardRangeFinderFound", forwardRangeFinderFound);
     	
     }
     
@@ -326,16 +331,23 @@ public class DriveSystem extends Subsystem {
     public void displayRangeFinderDistance() {
     	if (!forwardRangeFinder.addressOnly()) {
     		forwardRangeFinder.write(204, 81);
-    		delay(80);
-    		forwardRangeFinder.read(225, 2, buffer);
+    		if (getElapsetime() >= 0 && getElapsetime() < 3) {
+				reset();
+			}
+    		
+    		if (getElapsetime() > 80) {
+    			forwardRangeFinder.read(225, 2, buffer);
+    			
+    			/*
+    	    	 * Since we currently don't know what the hell this buffer array is, I will print everything from it!
+    	    	 */
+
+    			for (int i = 0; i < buffer.length; i++) {
+    				SmartDashboard.putNumber("Buffer[ " + i + " ]", buffer[i]);
+    			}
+			}
 		}
     	
-    	/*
-    	 * Since we currently don't know what the hell this buffer array is, I will print everything from it!
-    	 */
-    	for (int i = 0; i < buffer.length; i++) {
-			SmartDashboard.putNumber("Buffer[ " + i + " ]", buffer[i]);
-		}
     }
     
     

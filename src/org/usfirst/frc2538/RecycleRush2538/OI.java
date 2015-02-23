@@ -105,7 +105,7 @@ public class OI {
         driveStick = new Joystick(0);
         
         ejectButton = new JoystickButton(driveStick, 4);
-        ejectButton.whenPressed(new EjectGroup());
+        ejectButton.whenPressed(new DisplayRangeFinder());
         aftHeavyButton = new JoystickButton(driveStick, 2);
         aftHeavyButton.whenPressed(new SetAft());
         forwardHeavyButton = new JoystickButton(driveStick, 3);

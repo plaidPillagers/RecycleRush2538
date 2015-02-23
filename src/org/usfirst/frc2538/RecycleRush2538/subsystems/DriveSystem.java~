@@ -310,27 +310,43 @@ public class DriveSystem extends Subsystem {
     	return startTime = System.currentTimeMillis() - startTime;
     }
     
-    /*
-     * Used as a proof of concept for the I2C rangefinder 
-     */
-    private void displayRangeFinderDistance() {
-    	if (!forwardRangeFinder.addressOnly()) {
-    		forwardRangeFinder.write(204, 81);
-    		delay(80);
-    		forwardRangeFinder.read(225, 2, buffer);
-		}
-    }
-    
-    
     private void delay(int delayTime) {
-    	reset(); 
-    	
-    	while (true) {
+		reset(); 
+		
+		while (true) {
 			if (getElapsetime() > delayTime) {
 				return;
 			}
 		}
 	}
+
+	/*
+     * Used as a proof of concept for the I2C rangefinder 
+     */
+    public void displayRangeFinderDistance() {
+    	if (!forwardRangeFinder.addressOnly()) {
+    		forwardRangeFinder.write(204, 81);
+    		if (getElapsetime() >= 0 && getElapsetime() < 3) {
+				reset();
+			}
+    		
+    		if (getElapsetime() > 80) {
+    			forwardRangeFinder.read(225, 2, buffer);
+    			
+    			/*
+    	    	 * Since we currently don't know what the hell this buffer array is, I will print everything from it!
+    	    	 */
+
+    			for (int i = 0; i < buffer.length; i++) {
+    				SmartDashboard.putNumber("Buffer[ " + i + " ]", buffer[i]);
+    			}
+			}
+		}
+    	
+    }
+    
+    
+    
 
 	/*private void circularJoystick(Joystick driveJoystick) {
     	double joystickX = driveJoystick.getX();

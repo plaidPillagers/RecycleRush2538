@@ -661,7 +661,7 @@ Children:
           name: Command
           type: Command
           validators: *id019
-          value: EjectGroup
+          value: DisplayRangeFinder
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id020
           default: whileHeld
