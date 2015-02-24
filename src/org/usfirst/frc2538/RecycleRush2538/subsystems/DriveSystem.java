@@ -89,13 +89,17 @@ public class DriveSystem extends Subsystem {
      * AUTO CONSTANTS
      */
     private final double OPTIMALDISTANCEFROMWALL = 56;
-    private final double DISTANCETOTHING = 19;
     private final double DISTANCEFINEZONE = 38;
     private final double DISTANCEMARGIN = 3;
     private final double DISTANCEFINEFARZONE = OPTIMALDISTANCEFROMWALL + DISTANCEMARGIN + 18;
     private final double DISTANCEFINESPEED = .25;
     private final double DISTANCECOURSESPEED = .5;
     private final double OPTIMALDISTANCESPEED = 0;
+    
+    private final double OPTIMALDISTANCETOTHING = 19;
+    
+    private final double PASSIVECONTAINERANGLE = -15;
+    private final double DRIVETIME = 1;
     
     private final double STARTINGANGLE = 0;
     private final double ANGLEMARGIN = 10;
@@ -418,18 +422,18 @@ public class DriveSystem extends Subsystem {
     	rightRearMec.spinSet(magnitude * directionToMove);
     }
     
-    private void centerDistanceStrafe(double distance, boolean wallOnLeft) {
+    private void centerDistanceStrafe(double currentDistance, boolean wallOnLeft) {
     	int directionAwayFromWall = (wallOnLeft)? 1 : -1;
-    	if (distance < OPTIMALDISTANCEFROMWALL + DISTANCEMARGIN && distance > OPTIMALDISTANCEFROMWALL - DISTANCEMARGIN) {
+    	if (currentDistance < OPTIMALDISTANCEFROMWALL + DISTANCEMARGIN && currentDistance > OPTIMALDISTANCEFROMWALL - DISTANCEMARGIN) {
 			return;
 		}
-    	else if(distance > DISTANCEFINEZONE && distance <= OPTIMALDISTANCEFROMWALL - DISTANCEMARGIN) {
+    	else if(currentDistance > DISTANCEFINEZONE && currentDistance <= OPTIMALDISTANCEFROMWALL - DISTANCEMARGIN) {
     		autoStrafe(directionAwayFromWall, DISTANCEFINESPEED);
     	}
-    	else if(distance <= DISTANCEFINEZONE) {
+    	else if(currentDistance <= DISTANCEFINEZONE) {
     		autoStrafe(directionAwayFromWall, DISTANCECOURSESPEED);
     	}
-    	else if(distance > OPTIMALDISTANCEFROMWALL + DISTANCEMARGIN  && distance <= DISTANCEFINEFARZONE) {
+    	else if(currentDistance > OPTIMALDISTANCEFROMWALL + DISTANCEMARGIN  && currentDistance <= DISTANCEFINEFARZONE) {
     		autoStrafe(directionAwayFromWall, - DISTANCEFINESPEED);
     	}
     	else {
@@ -437,11 +441,33 @@ public class DriveSystem extends Subsystem {
 		}
     }
     
+    private void centerDistanceForward(double distance) {
+    	if (distance <= OPTIMALDISTANCETOTHING) {
+			return;
+		}
+    	else{
+    		setAll(0, 1, .5);
+    	}
+    }
+    
     private void autoStrafe(int direction, double magnitude) {
     	leftFrontMec.set(direction * magnitude, 0, 1);
     	rightFrontMec.set(direction * magnitude, 0, -1);
     	leftRearMec.set(direction * magnitude, 0, 1);
     	rightRearMec.set(direction * magnitude, 0, -1);
+    }
+    
+    private void passiveLeftSpin(Gyro gyro) {
+    	double gyroAngle = gyro.getAngle();
+    	if (gyroAngle > PASSIVECONTAINERANGLE) {
+			leftFrontMec.spinSet(-.5);
+			rightFrontMec.spinSet(.5);
+			leftRearMec.spinSet(-.5);
+			rightRearMec.spinSet(.5);
+		}
+    	else if(gyroAngle <= PASSIVECONTAINERANGLE) {
+    		return;
+    	}
     }
   }
 
