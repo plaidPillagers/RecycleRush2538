@@ -36,6 +36,7 @@ public class RobotMap {
     public static Encoder driveSystemrightFrontEncoder;
     public static Encoder driveSystemleftRearEncoder;
     public static Encoder driveSystemrightRearEncoder;
+    public static Gyro driveSystemGyro;
     public static SpeedController intakeleftWheel;
     public static SpeedController intakerightWheel;
     public static DigitalInput intakefirstToteSwitch;
@@ -89,6 +90,9 @@ public class RobotMap {
         LiveWindow.addSensor("DriveSystem", "rightRearEncoder", driveSystemrightRearEncoder);
         driveSystemrightRearEncoder.setDistancePerPulse(4.71238899);
         driveSystemrightRearEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+        driveSystemGyro = new Gyro(0);
+        LiveWindow.addSensor("DriveSystem", "Gyro", driveSystemGyro);
+        driveSystemGyro.setSensitivity(0.007);
         intakeleftWheel = new Talon(5);
         LiveWindow.addActuator("Intake", "leftWheel", (Talon) intakeleftWheel);
         
