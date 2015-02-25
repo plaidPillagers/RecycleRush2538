@@ -495,5 +495,14 @@ public class DriveSystem extends Subsystem {
     	leftRearMec.spinSet(aggressiveThrottle * direction);
     	rightRearMec.spinSet(-aggressiveThrottle * direction);
     }
+    
+    public void autoTurn(boolean turningLeft) {
+    	if (turningLeft) {
+    		homemadeZ(-.7);
+		}
+    	else {
+			homemadeZ(.7);
+		}
+    }
   }
 

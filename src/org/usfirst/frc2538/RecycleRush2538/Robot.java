@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
     public static double frontHeavy;
     public static double balanced;
     public static double aftHeavy;
-    public Preferences prefs;
+    public static Preferences prefs;
     public static String autoSettings;
     
     public static String defaultAutonomous = "";
