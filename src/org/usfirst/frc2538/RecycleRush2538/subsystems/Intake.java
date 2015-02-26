@@ -62,7 +62,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void eject() {
-		SmartDashboard.putString("eject method", "eject called");
+		//SmartDashboard.putString("eject method", "eject called");
 		leftWheel.set(EJECT_SPEED);
 		rightWheel.set(-EJECT_SPEED);
 		displayEncoders();

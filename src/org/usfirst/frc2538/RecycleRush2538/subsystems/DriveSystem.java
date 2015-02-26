@@ -15,7 +15,6 @@ package org.usfirst.frc2538.RecycleRush2538.subsystems;
 
 
 
-import org.omg.CORBA.PRIVATE_MEMBER;
 import org.usfirst.frc2538.RecycleRush2538.Robot;
 import org.usfirst.frc2538.RecycleRush2538.RobotMap;
 import org.usfirst.frc2538.RecycleRush2538.commands.*;
@@ -272,7 +271,7 @@ public class DriveSystem extends Subsystem {
     	sketchySpeedConrtollers[2] = leftRearMec;
     	sketchySpeedConrtollers[3] = rightRearMec;
     	
-    	SmartDashboard.putString("make wheels", "making wheels");
+    	//SmartDashboard.putString("make wheels", "making wheels");
 	}
     
     public void setAll(double xVal, double yVal, double throttle) {

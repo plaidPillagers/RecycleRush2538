@@ -60,7 +60,7 @@ public class  ToStackOrNotStackCommand extends Command {
     protected void execute() {
     	//SmartDashboard.putString("2Stack", "executing");
     	//SmartDashboard.putBoolean("loweredLift", loweredLift);
-    	SmartDashboard.putBoolean("isFirstThing", Robot.intake.isFirstThing);
+    	//SmartDashboard.putBoolean("isFirstThing", Robot.intake.isFirstThing);
     	long time = timer.getElapsedTime();
     	//SmartDashboard.putNumber("time", time);
     	if (!isDone) {
@@ -82,7 +82,7 @@ public class  ToStackOrNotStackCommand extends Command {
     			extendedTrident = true;
     		}
     		else if (Robot.intake.okay()) {
-    			SmartDashboard.putString("2Stack", "intake if statement");
+    			//SmartDashboard.putString("2Stack", "intake if statement");
     			Robot.intake.closeConfig();
     			Robot.intake.limitSwitchIntake();
     		}
