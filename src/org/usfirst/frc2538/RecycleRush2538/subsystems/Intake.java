@@ -73,11 +73,16 @@ public class Intake extends Subsystem {
 		rightWheel.set(0);
 	}
 
-	public void spin() {
-		// spinning clockwise
+	public void counterClockwiseSpin() {
+		// spinning counterclockwise
 		leftWheel.set(LEFT_SPIN);
 		rightWheel.set(-RIGHT_SPIN);
 		displayEncoders();
+	}
+	
+	public void clockwiseSpin() {
+		leftWheel.set(-LEFT_SPIN);
+		rightWheel.set(RIGHT_SPIN);
 	}
 	
 	public void setConfig() {

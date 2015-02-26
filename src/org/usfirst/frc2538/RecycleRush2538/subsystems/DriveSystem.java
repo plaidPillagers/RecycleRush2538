@@ -92,9 +92,9 @@ public class DriveSystem extends Subsystem {
      * AUTO CONSTANTS
      */
     private final double OPTIMALDISTANCEFROMWALL = 56;
-    private final double DISTANCEFINEZONE = 38;
+    private final double DISTANCEFINEZONE = 44;
     private final double DISTANCEMARGIN = 3;
-    private final double DISTANCEFINEFARZONE = OPTIMALDISTANCEFROMWALL + DISTANCEMARGIN + 18;
+    private final double DISTANCEFINEFARZONE = OPTIMALDISTANCEFROMWALL + DISTANCEMARGIN + 12;
     private final double DISTANCEFINESPEED = .25;
     private final double DISTANCECOURSESPEED = .5;
     private final double OPTIMALDISTANCESPEED = 0;
@@ -107,7 +107,7 @@ public class DriveSystem extends Subsystem {
     private final double DRIVETIME = 1;
     
     private final double STARTINGANGLE = 0;
-    private final double ANGLEMARGIN = 10;
+    private final double ANGLEMARGIN = 5;
     private final double GYROZONEONE = 0;
     private final double GYROZONETWO = .25;
     private final double GYROZONETHREE = .5;
@@ -408,11 +408,11 @@ public class DriveSystem extends Subsystem {
     
     public boolean centerAngle() {
     	double gyroAngle = gyro.getAngle();
-    	int directionToMove = (Math.abs(gyroAngle) + gyroAngle == 0)? 1 : -1;
+    	int directionToMove = (gyroAngle < 0.0)? 1 : -1;
     	if (Math.abs(gyroAngle) < ANGLEMARGIN) {
 			return true;
 		}
-    	else if(Math.abs(gyroAngle) < GYROZONETWOBOUNDRY && Math.abs(gyroAngle) >= ANGLEMARGIN) {
+    	else if(Math.abs(gyroAngle) < GYROZONETWOBOUNDRY) {
     		autoTwist(GYROZONETWO, directionToMove);
     		return false;
     	}

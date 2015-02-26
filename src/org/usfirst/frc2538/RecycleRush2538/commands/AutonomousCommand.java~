@@ -10,6 +10,8 @@
 
 package org.usfirst.frc2538.RecycleRush2538.commands;
 
+import java.util.ArrayList;
+
 import org.usfirst.frc2538.RecycleRush2538.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -21,40 +23,139 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutonomousCommand extends CommandGroup {
 
 	public AutonomousCommand() {
-		//String input = Robot.autoSettings;
-		//if (input.trim() == "1") {
-			SmartDashboard.putString("auto mode:", "get thing");
-			addSequential(new SetBalanced());
-			//addSequential(new AutoDriveForward(0.3), 2);
+		addSequential(new SetBalanced());
+		String input = Robot.prefs.getString("autonomous", "1");
+		if (input.trim() == "1") {
+			SmartDashboard.putString("auto mode:", "1");
 			addSequential(new GetThing());
 			addSequential(new AutoDriveForward(0.3), 2);
 			addSequential(new StackThing());
+			addSequential(new SetForward());
 			addSequential(new AutoDriveForward(0.3), 2);
 			addSequential(new StackThing());
 			addSequential(new AutoDriveSideways(), 2);
-		//}
-		/*else {
-			SmartDashboard.putString("auto mode:", "do nothing");
-			addSequential(new SetBalanced());
-			addSequential(new AutoDriveForward(0.8), 2);
+		} else if (input.trim() == "2") {
+			SmartDashboard.putString("auto mode:", "2");
+			addSequential(new GetThing());
+			addSequential(new AutoCenterDistanceForward());
+			addSequential(new StackThing());
+			addSequential(new SetForward());
+			addSequential(new AutoCenterGroup());
+			addSequential(new AutoCenterDistanceForward());
+			addSequential(new StackThing());
+			addSequential(new AutoDriveRight(), 2);
+		} else if (input.trim() == "3") {
+			SmartDashboard.putString("auto mode:", "3");
+			addSequential(new GetThing());
+			addSequential(new AutoCenterDistanceForward());
+			addSequential(new AutoAggressiveSpinGroup());
+			addSequential(new AutoCenterGroup());
+			addSequential(new AutoCenterDistanceForward());
+			addSequential(new StackThing());
+			addSequential(new SetForward());
+			addSequential(new AutoCenterDistanceForward());
+			addSequential(new AutoAggressiveSpinGroup());
+			addSequential(new AutoCenterGroup());
+			addSequential(new AutoCenterDistanceForward());
+			addSequential(new StackThing());
+			addSequential(new AutoDriveRight(), 2);
+		} 
+		else if(input.trim() == "4") {
+			SmartDashboard.putString("auto mode:", "4");
+			addSequential(new ClosedConfigCommand());
+			addSequential(new AutoDriveForward(), 2.5);
+			addSequential(new OpenConfigCommand());
 		}
+		else if(input.trim() == "5") {
+			SmartDashboard.putString("auto mode:", "5");
+			addSequential(new GetThing());
+			addSequential(new AutoDriveRight(), 2);
+		}
+		else {
+			SmartDashboard.putString("auto mode:", input);
+			input = input.toUpperCase();
+			input = input.trim();
+			ArrayList<String> commands = new ArrayList<String>();
+			String currentCommand = "";
+
+			for (int i = 0; i < input.length(); i++) {
+				if (input.charAt(i) != ';') {
+					currentCommand += input.charAt(i);
+				} else {
+					commands.add(currentCommand);
+					currentCommand = "";
+				}
+			}
+
+			try {
+
+				for (int i = 0; i < commands.size(); i++) {
+					String laCommandCourant = commands.get(i);
+					double argumentOne;
+					double argumentTwo;
+					if (laCommandCourant.charAt(0) == 'F') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						String argumentTwoSubstring = laCommandCourant.substring(6, 8);
+						argumentOne = new Double(argumentOneSubstring);
+						argumentTwo = new Double(argumentTwoSubstring);
+						addSequential(new AutoDriveForward(argumentOne),argumentTwo);
+					} else if (laCommandCourant.charAt(0) == 'A') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						argumentOne = new Double(argumentOneSubstring);
+						addSequential(new AutoDriveRight(), argumentOne);
+					} else if (laCommandCourant.charAt(0) == 'L') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						argumentOne = new Double(argumentOneSubstring);
+						addSequential(new AutoDriveLeft(), argumentOne);
+					} else if (laCommandCourant.charAt(0) == 'P') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						argumentOne = new Double(argumentOneSubstring);
+						addSequential(new AutoTurnLeft(), argumentOne);
+					} else if (laCommandCourant.charAt(0) == 'S') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						argumentOne = new Double(argumentOneSubstring);
+						addSequential(new AutoTurnRight(), argumentOne);
+					} else if (laCommandCourant.charAt(0) == 'G') {
+						addSequential(new GetThing());
+					} else if (laCommandCourant.charAt(0) == 'H') {
+						addSequential(new StackThing());
+					} else if (laCommandCourant.charAt(0) == 'E') {
+						addSequential(new EjectGroup());
+					} else if (laCommandCourant.charAt(0) == 'T') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						argumentOne = new Double(argumentOneSubstring);
+						addSequential(new eject(), argumentOne);
+					} else if (laCommandCourant.charAt(0) == 'O') {
+						addSequential(new OpenConfigCommand());
+					} else if (laCommandCourant.charAt(0) == 'C') {
+						addSequential(new ClosedConfigCommand());
+					} else if (laCommandCourant.charAt(0) == 'I') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						argumentOne = new Double(argumentOneSubstring);
+						addSequential(new intakeCommand(), argumentOne);
+					} else if (laCommandCourant.charAt(0) == 'B') {
+						addSequential(new ContainerLift());
+					} else if (laCommandCourant.charAt(0) == '?') {
+						addSequential(new AutoCenterGroup());
+					} else if (laCommandCourant.charAt(0) == '<') {
+						addSequential(new AutoPassiveContainerRemovalGroup());
+					} else if (laCommandCourant.charAt(0) == '>') {
+						addSequential(new AutoAggressiveSpinGroup());
+					}
+				}
+			}
+
+			catch (Exception e) {
+				SmartDashboard.putString("Auto Exception", "******* PLAIDSPLOSTION DETECTED *******");
+			}
+		}
+
+		/*
+		 * else { SmartDashboard.putString("auto mode:", "do nothing");
+		 * addSequential(new SetBalanced()); addSequential(new
+		 * AutoDriveForward(0.8), 2); }
+		 */
 		SmartDashboard.putString("auto auto", input);
-		*/
-		// Add Commands here:
-		// e.g. addSequential(new Command1());
-		// addSequential(new Command2());
-		// these will run in order.
 
-		// To run multiple commands at the same time,
-		// use addParallel()
-		// e.g. addParallel(new Command1());
-		// addSequential(new Command2());
-		// Command1 and Command2 will run in parallel.
-
-		// A command group will require all of the subsystems that each member
-		// would require.
-		// e.g. if Command1 requires chassis, and Command2 requires arm,
-		// a CommandGroup containing them would require both the chassis and the
-		// arm.
 	}
 }
