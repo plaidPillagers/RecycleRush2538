@@ -351,7 +351,9 @@ public class DriveSystem extends Subsystem {
 	/*
      * Used as a proof of concept for the I2C rangefinder 
      */
+    
     public void displayRangeFinderDistance() {
+    	/*
     	if (!forwardRangeFinder.addressOnly()) {
     		forwardRangeFinder.write(204, 81);
     		if (getElapsetime() >= 0 && getElapsetime() < 3) {
@@ -364,13 +366,13 @@ public class DriveSystem extends Subsystem {
     			/*
     	    	 * Since we currently don't know what the hell this buffer array is, I will print everything from it!
     	    	 */
-
+    		/*
     			for (int i = 0; i < buffer.length; i++) {
     				SmartDashboard.putNumber("Buffer[ " + i + " ]", buffer[i]);
     			}
 			}
 		}
-    	
+    	*/
     }
     
     

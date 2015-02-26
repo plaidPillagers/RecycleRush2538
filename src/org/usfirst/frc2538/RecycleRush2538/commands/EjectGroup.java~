@@ -22,7 +22,7 @@ public class EjectGroup extends CommandGroup {
     public  EjectGroup() {
     	addSequential(new ContainerConfigCommand());
     	addSequential(new LowerLift());
-    	addSequential(new Wait(), 0.4);
+    	addSequential(new Wait(), 2.5);
     	addSequential(new ExtendTridentCommand());
     	addSequential(new Wait(), .25);
     	addSequential(new ToteConfigCommand());
