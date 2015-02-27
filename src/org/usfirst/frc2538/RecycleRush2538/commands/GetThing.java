@@ -26,7 +26,7 @@ public class GetThing extends CommandGroup {
     	addSequential(new RunIntake(), .5);
     	addSequential(new ContainerConfigCommand());
     	addSequential(new RaiseLift());
-    	addSequential(new Wait(), .15);
+    	addSequential(new Wait(), .25);
     	addSequential(new RetractTridentCommand());
     	Robot.intake.isFirstThing = false;
         // Add Commands here:

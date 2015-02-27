@@ -68,12 +68,15 @@ public class AutonomousCommand extends CommandGroup {
 			addSequential(new AutoDriveForward(), .5);
 			addSequential(new ClosedConfigCommand());
 			addSequential(new Wait(), 1);
-			if (input.charAt(1) == 'b') {
+			//addSequential(new AutoDriveBackward(), 1.5);
+			if (input.length() < 2 && input.charAt(1) == 'b') {
 				addSequential(new AutoDriveBackward(), 1.7);
 			}
 			else {
 				addSequential(new AutoDriveBackward(), 1.5);
 			}
+			
+		}
 		/*
 		else if (input.trim() == "1"){
 			SmartDashboard.putString("auto mode:", "1");
@@ -210,6 +213,5 @@ public class AutonomousCommand extends CommandGroup {
 		SmartDashboard.putString("auto auto", input);
 	
 	
-	}
 	}	
 }

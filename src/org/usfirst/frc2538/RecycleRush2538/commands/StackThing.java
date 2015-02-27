@@ -27,7 +27,7 @@ public class StackThing extends CommandGroup {
     	addSequential(new intakeCommand());
     	addSequential(new OpenConfigCommand());
     	addSequential(new RaiseLift());
-    	addSequential(new Wait(), .15);
+    	addSequential(new Wait(), .25);
     	addSequential(new RetractTridentCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());

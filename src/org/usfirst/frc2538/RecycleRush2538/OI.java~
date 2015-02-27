@@ -94,9 +94,9 @@ public class OI {
         tridentActuatorButton.whenPressed(new tridentActuator());
         liftActuatorButton = new JoystickButton(secondaryStick, 9);
         liftActuatorButton.whenPressed(new liftActuator());
-        intakeWheelsOnly = new JoystickButton(secondaryStick, 1);
+        intakeWheelsOnly = new JoystickButton(secondaryStick, 8);
         intakeWheelsOnly.whileHeld(new RunIntake());
-        ejectOnly = new JoystickButton(secondaryStick, 11);
+        ejectOnly = new JoystickButton(secondaryStick, 7);
         ejectOnly.whileHeld(new eject());
         spinClockwiseButton = new JoystickButton(secondaryStick, 6);
         spinClockwiseButton.whileHeld(new SpinClockwiseCommand());
