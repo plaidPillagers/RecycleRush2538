@@ -38,6 +38,7 @@ public class  liftActuator extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.intake.openConfig();
     	Robot.lift.setLift();
     	//RobotMap.liftlifting.set(DoubleSolenoid.Value.kForward);
     }

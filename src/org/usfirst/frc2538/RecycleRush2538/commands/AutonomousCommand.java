@@ -24,37 +24,56 @@ public class AutonomousCommand extends CommandGroup {
 
 	public AutonomousCommand() {
 		addSequential(new SetBalanced());
-		String input = Robot.prefs.getString("autonomous", "1");
-		double driveSidewaysTime = .5;
-		if(input.trim() == "0") {
-			SmartDashboard.putString("auto mode:", "0");
-			addSequential(new AutoDriveForward(), 2);
-		}
-		else if (input.trim() == "1") {
-			SmartDashboard.putString("auto mode:", "1");
+		String input = Robot.prefs.getString("autonomous", "7");
+		double driveSidewaysTime = 2.5;
+		double driveForwardTime = 1.5;
+		//if(input.trim() == "0") {
+			//SmartDashboard.putString("auto mode:", "0");
+			//addSequential(new AutoDriveForward(), 2);
+		//}
+		if (input.charAt(0)== 'b') {
+			SmartDashboard.putString("auto mode:", "b");
+			addSequential(new SetForward());
+			addParallel(new RunIntake());
 			addSequential(new OpenConfigCommand());
+			addSequential(new Wait(), .3);
+			addSequential(new AutoTurnRight(), .2);
 			addSequential(new AutoDriveRight(), driveSidewaysTime);
+			addSequential(new Wait(), .5);
 			addSequential(new AutoDriveForward(), .3);
+			addSequential(new Wait(), 1.5);
+			addSequential(new ClosedConfigCommand());
+			addSequential(new Wait(), .5);
 			addSequential(new GetThing());
-			addSequential(new AutoDriveLeft(), driveSidewaysTime);
-			addSequential(new AutoDriveForward(), 1.5);
+			/*addSequential(new AutoDriveLeft(), driveSidewaysTime);
+			addSequential(new AutoDriveForward(), 1.2);
 			addSequential(new AutoDriveRight(), driveSidewaysTime);
 			addSequential(new AutoDriveForward(), .3);
 			addSequential(new StackThing());
 			addSequential(new AutoDriveLeft(), driveSidewaysTime);
-			addSequential(new AutoDriveForward(), 1.5);
+			addSequential(new AutoDriveForward(), 1.2);
 			addSequential(new AutoDriveRight(), driveSidewaysTime);
 			addSequential(new AutoDriveForward(), .3);
 			addSequential(new StackThing());
+			*/
 			addSequential(new AutoTurnLeft(), 1);
-			addSequential(new AutoDriveForward(), 2);
+			addSequential(new AutoDriveForward(), driveForwardTime);
 			
 		}
-		else if (input.trim() == "2") {
-			SmartDashboard.putString("auto mode:", "2");
-			addSequential(new ContainerLift());
-			addSequential(new AutoDriveBackward(), 2);
-		}
+		else if (input.charAt(0) == 'a') {
+			SmartDashboard.putString("auto mode:", "a");
+			addSequential(new OpenConfigCommand());
+			addParallel(new RunIntake());
+			addSequential(new Wait(), 1);
+			addSequential(new AutoDriveForward(), .5);
+			addSequential(new ClosedConfigCommand());
+			addSequential(new Wait(), 1);
+			if (input.charAt(1) == 'b') {
+				addSequential(new AutoDriveBackward(), 1.7);
+			}
+			else {
+				addSequential(new AutoDriveBackward(), 1.5);
+			}
 		/*
 		else if (input.trim() == "1"){
 			SmartDashboard.putString("auto mode:", "1");
@@ -192,5 +211,5 @@ public class AutonomousCommand extends CommandGroup {
 	
 	
 	}
-	
+	}	
 }

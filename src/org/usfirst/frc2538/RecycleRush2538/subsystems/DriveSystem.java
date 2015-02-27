@@ -290,6 +290,10 @@ public class DriveSystem extends Subsystem {
     	rightRearMec.spinSet(joystickZ);
     }
     
+    public void stopTurning() {
+    	homemadeZ(0);
+    }
+    
     /**
      * 1 = forward drive mode
      * 2 = balanced drive mode

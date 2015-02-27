@@ -23,6 +23,7 @@ public class GetThing extends CommandGroup {
     public  GetThing() {
     	addSequential(new ToteConfigCommand());
     	addSequential(new intakeCommand());
+    	addSequential(new RunIntake(), .5);
     	addSequential(new ContainerConfigCommand());
     	addSequential(new RaiseLift());
     	addSequential(new Wait(), .15);

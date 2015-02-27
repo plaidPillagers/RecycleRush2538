@@ -110,6 +110,7 @@ public class Robot extends IterativeRobot {
         
         Robot.driveSystem.makeWheels();
         intake.init();
+        SmartDashboard.putString("robot init", "auto" );
        
     }
 		
@@ -132,7 +133,13 @@ public class Robot extends IterativeRobot {
         // schedule the autonomous command (example)
     	//autoSettings = prefs.getString("auto", "no string");
     	//SmartDashboard.putString("auto", autoSettings);
-        if (autonomousCommand != null) autonomousCommand.start();
+    	  autonomousCommand = new AutonomousCommand();
+        if (autonomousCommand != null) {
+        	autonomousCommand.start();
+        	SmartDashboard.putString("Auto start", "Autonomous started");
+        } else {
+        	SmartDashboard.putString("Auto start", "Autonomous is null");
+        }
         frontHeavy = prefs.getDouble("frontHeavy", 1.0);
     	balanced = prefs.getDouble("balanced", 1.0);
     	aftHeavy = prefs.getDouble("aftHeavy", 1.0);

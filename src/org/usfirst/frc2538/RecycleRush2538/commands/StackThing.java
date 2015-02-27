@@ -18,10 +18,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class StackThing extends CommandGroup {
     
     public  StackThing() {
+    	addSequential(new ClosedConfigCommand());
     	addSequential(new intakeCommand());
     	addSequential(new ContainerConfigCommand());
     	addSequential(new LowerLift());
     	addSequential(new ExtendTridentCommand());
+    	addSequential(new ClosedConfigCommand());
     	addSequential(new intakeCommand());
     	addSequential(new OpenConfigCommand());
     	addSequential(new RaiseLift());
