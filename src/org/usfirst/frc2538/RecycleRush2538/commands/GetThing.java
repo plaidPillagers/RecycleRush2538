@@ -21,7 +21,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GetThing extends CommandGroup {
     
     public  GetThing() {
-    	addSequential(new ToteConfigCommand());
+    	addSequential(new ExtendTridentCommand());
+    	//addSequential(new ToteConfigCommand());
     	addSequential(new intakeCommand());
     	addSequential(new RunIntake(), .5);
     	addSequential(new ContainerConfigCommand());
