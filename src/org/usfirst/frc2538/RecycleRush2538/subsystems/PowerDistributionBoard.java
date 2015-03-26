@@ -50,14 +50,14 @@ public class PowerDistributionBoard extends Subsystem {
     	double leftIntakeWheelPD = pdBoard.getCurrent(13);
     	double rightIntakeWheelPD = pdBoard.getCurrent(0);
     	
-    	SmartDashboard.putNumber("Left Front Wheel Current", leftFrontWheelPD);
+    	/*SmartDashboard.putNumber("Left Front Wheel Current", leftFrontWheelPD);
     	SmartDashboard.putNumber("Left Rear Wheel Current", leftRearWheelPD);
     	SmartDashboard.putNumber("Right Front Wheel Current", rightFrontWheelPD);
     	SmartDashboard.putNumber("Right Rear Wheel Current", rightRearWheelPD);
     	
     	SmartDashboard.putNumber("Left Intake Wheel Current", leftIntakeWheelPD);
     	SmartDashboard.putNumber("Right Intake Wheel Current", rightIntakeWheelPD);
-    			
+    	*/		
     }
 }
 

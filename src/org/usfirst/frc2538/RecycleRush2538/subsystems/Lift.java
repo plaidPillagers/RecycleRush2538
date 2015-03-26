@@ -15,6 +15,7 @@ import org.usfirst.frc2538.RecycleRush2538.RobotMap;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -44,10 +45,12 @@ public class Lift extends Subsystem {
     public void setTrident() {
     	if (tridentExtended) {
 			trident.set(DoubleSolenoid.Value.kReverse);
+			SmartDashboard.putBoolean("tridentExtended", false);
 			tridentExtended = false;
 		}
     	else {
     		trident.set(DoubleSolenoid.Value.kForward);
+    		SmartDashboard.putBoolean("tridentExtended", true);
     		tridentExtended = true;
     	}
     }
@@ -66,10 +69,12 @@ public class Lift extends Subsystem {
     
     public void extendTrident() {
     	trident.set(DoubleSolenoid.Value.kForward);
+    	SmartDashboard.putBoolean("tridentExtended", true);
     }
     
     public void retractTrident() {
     	trident.set(DoubleSolenoid.Value.kReverse);
+    	SmartDashboard.putBoolean("tridentExtended", false);
     }
     
     public void raiseLift() {

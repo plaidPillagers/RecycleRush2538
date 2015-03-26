@@ -11,10 +11,8 @@
 
 package org.usfirst.frc2538.RecycleRush2538.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2538.RecycleRush2538.Robot;
 import org.usfirst.frc2538.RecycleRush2538.subsystems.OurTimer;
 

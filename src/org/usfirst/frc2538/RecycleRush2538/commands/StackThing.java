@@ -11,6 +11,7 @@
 
 package org.usfirst.frc2538.RecycleRush2538.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -19,6 +20,7 @@ public class StackThing extends CommandGroup {
     
     public  StackThing() {
     	//addSequential(new ClosedConfigCommand());
+    	SmartDashboard.putBoolean("stackThing", true);
     	addSequential(new intakeCommand());
     	addSequential(new ContainerConfigCommand());
     	addSequential(new LowerLift());
@@ -31,6 +33,7 @@ public class StackThing extends CommandGroup {
     	addSequential(new RaiseLift());
     	addSequential(new Wait(), .25);
     	addSequential(new RetractTridentCommand());
+    	SmartDashboard.putBoolean("stackThing", false);
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

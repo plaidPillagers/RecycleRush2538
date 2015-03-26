@@ -214,7 +214,7 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putNumber("Right Front Motor: ", rightFrontVal);
     	SmartDashboard.putNumber("Right Rear Motor: ", rightRearVal);
     	
-    	SmartDashboard.putDouble("Accelerometer X", accelX);
+    	/*SmartDashboard.putDouble("Accelerometer X", accelX);
     	SmartDashboard.putDouble("Accelerometer Y", accelY);
     	SmartDashboard.putDouble("Accelerometer Z", accelZ);
     	
@@ -227,7 +227,7 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putNumber("circular y", circularYVal);
     	SmartDashboard.putNumber("joystick magnitude", magnitude);
     	SmartDashboard.putNumber("joystick angle", angle);
-    	
+    	*/
     	SmartDashboard.putNumber("left front encoder speed: ", leftFrontEncoderSpeed);
     	SmartDashboard.putNumber("right front encoder speed: ", rightFrontEncoderSpeed);
     	SmartDashboard.putNumber("left rear encoder speed: ", leftRearEncoderSpeed);
@@ -306,14 +306,17 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putNumber("front drive proportion", forwardDriveProportion);
     	
     	if (driveMode == FORWARDDRIVE) {
+    		SmartDashboard.putString("driveMode", "Forward Drive Mode");
 			frontCompensation = 1;
 			aftCompensation = forwardDriveProportion;
 		}
     	else if(driveMode == BALANCEDDRIVE) {
+    		SmartDashboard.putString("driveMode", "Balanced Drive Mode");
     		frontCompensation = balancedDriveProportion;
     		aftCompensation = balancedDriveProportion;
     	}
     	else{
+    		SmartDashboard.putString("driveMode", "Aft Drive Mode");
     		frontCompensation = aftDriveProportion;
     		aftCompensation = 1;
     	}

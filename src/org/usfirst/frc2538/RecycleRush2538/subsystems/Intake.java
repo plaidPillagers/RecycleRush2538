@@ -126,8 +126,8 @@ public class Intake extends Subsystem {
 		double leftIntakeSpeed = Robot.intake.leftIntakeEncoder.getRate();
 		double rightIntakeSpeed = Robot.intake.rightIntakeEncoder.getRate();
 		
-		SmartDashboard.putNumber("Left intake encoder", leftIntakeSpeed);
-		SmartDashboard.putNumber("Right intake encoder", rightIntakeSpeed);
+		//SmartDashboard.putNumber("Left intake encoder", leftIntakeSpeed);
+		//SmartDashboard.putNumber("Right intake encoder", rightIntakeSpeed);
 	}
 	
 	public void openConfig() {

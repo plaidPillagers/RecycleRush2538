@@ -14,6 +14,7 @@ package org.usfirst.frc2538.RecycleRush2538.commands;
 import org.usfirst.frc2538.RecycleRush2538.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GetThing extends CommandGroup {
     
     public  GetThing() {
+    	SmartDashboard.putBoolean("getThing", true);
     	addSequential(new ExtendTridentCommand());
     	//addSequential(new ToteConfigCommand());
     	addSequential(new intakeCommand());
@@ -29,6 +31,7 @@ public class GetThing extends CommandGroup {
     	addSequential(new RaiseLift());
     	addSequential(new Wait(), .25);
     	addSequential(new RetractTridentCommand());
+    	SmartDashboard.putBoolean("getThing", false);
     	Robot.intake.isFirstThing = false;
         // Add Commands here:
         // e.g. addSequential(new Command1());
