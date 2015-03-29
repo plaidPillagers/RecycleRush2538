@@ -202,7 +202,20 @@ public class AutonomousCommand extends CommandGroup {
 						addSequential(new AutoPassiveContainerRemovalGroup());
 					} else if (laCommandCourant.charAt(0) == '>') {
 						addSequential(new AutoAggressiveSpinGroup());
-					}
+					}else if (laCommandCourant.charAt(0) == 'D') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						argumentOne = new Double(argumentOneSubstring);
+						addSequential(new DriveSpecificDistanceForwardCommand(argumentOne));
+					}else if (laCommandCourant.charAt(0) == 'Q') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						argumentOne = new Double(argumentOneSubstring);
+						addSequential(new StrafeSpecificDistanceLeftCommand(argumentOne));
+					}else if (laCommandCourant.charAt(0) == 'W') {
+						String argumentOneSubstring = laCommandCourant.substring(2, 4);
+						argumentOne = new Double(argumentOneSubstring);
+						addSequential(new StrafeSpecificDistanceRightCommand(argumentOne));
+					}else if (laCommandCourant.charAt(0) == 'R') {
+						addSequential(new ResetEncoders());
 				}
 			}
 

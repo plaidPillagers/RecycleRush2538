@@ -54,38 +54,63 @@ public class DriveSystem extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    
+    /**
+     * Mecanum Wheels and Balance
+     */
+    
+    // Mecanum Wheel Objects
+    MecanumSpeedConrtoller[] sketchySpeedConrtollers = new MecanumSpeedConrtoller[4];
     private MecanumSpeedConrtoller leftFrontMec;
     private MecanumSpeedConrtoller rightFrontMec;
     private MecanumSpeedConrtoller leftRearMec;
     private MecanumSpeedConrtoller rightRearMec;
     
+    // The variable sent to the MecanumSpeedControllers (Gets modified by the proportions)
+    public double frontCompensation = 1.0;
+    public double aftCompensation = 1.0;
+    
+    // The proportion for the drive modes from Smartdashboard
+    public double forwardDriveProportion = Robot.frontHeavy;
+    public double balancedDriveProportion = Robot.balanced;
+    public double aftDriveProportion = Robot.aftHeavy;
+    
+    // The state of the drive system
+    public final int FORWARDDRIVE = 1;
+    public final int BALANCEDDRIVE = 2;
+    public final int AFTDRIVE = 3;
+    public int driveMode  = BALANCEDDRIVE;
+    
+    /**
+     * Joystick
+     */
+    
+    // Joystick Varible
+    private double JOYSTICK_TOLERANCE = .05; 
+    public boolean isInverted = false;
+    public boolean isTwisted = false;
+    
+    /**
+     * Sensors
+     */
+    
+    // Ultrasonic Range Finders
     private byte[] buffer; //I don't know why need this but the read() method used by I2C really wants it
     private I2C forwardRangeFinder = new I2C(I2C.Port.kOnboard, 224);
     private double forwardRange = 0;
     private double leftRange = 0;
     private double rightRange = 0;
     
-    private double JOYSTICK_TOLERANCE = .05;
-    public boolean isInverted = false;
-    public boolean isTwisted = false;
     public Accelerometer accelerometer = new BuiltInAccelerometer();
-    public double frontCompensation = 1.0;
-    public double aftCompensation = 1.0;
-    public double forwardDriveProportion = Robot.frontHeavy;
-    public double balancedDriveProportion = Robot.balanced;
-    public double aftDriveProportion = Robot.aftHeavy;
-    public final int FORWARDDRIVE = 1;
-    public final int BALANCEDDRIVE = 2;
-    public final int AFTDRIVE = 3;
-    public int driveMode  = BALANCEDDRIVE;
-    MecanumSpeedConrtoller[] sketchySpeedConrtollers = new MecanumSpeedConrtoller[4];
+        
+    //int WHEEL_RADIUS = 3;
+    //double pulsePerRotaion = 360;
+    //double driveEncoderDistancePerTick = (Math.PI * 2 * WHEEL_RADIUS) / pulsePerRotaion;
     
-    int WHEEL_RADIUS = 3;
-    double pulsePerRotaion = 360;
-    double driveEncoderDistancePerTick = (Math.PI * 2 * WHEEL_RADIUS) / pulsePerRotaion;
+    // Timing
     long startTime = 0;
     
-    double circularXVal = 0.0;
+    //double circularXVal = 0.0;
     double circularYVal = 0.0;
    
     /***
@@ -510,6 +535,39 @@ public class DriveSystem extends Subsystem {
 		}
     	else {
 			homemadeZ(.7);
+		}
+    }
+    
+    public boolean driveSpecificDistanceForward(double distance) {
+    	if (Math.abs(leftFrontEncoder.getDistance()) > distance - 3 && Math.abs(leftFrontEncoder.getDistance()) < distance + 3) {
+    		setAll(0, 0, 0);
+    		return true;
+		}
+    	else {
+			setAll(0, 1, .5);
+			return false;
+		}
+    }
+    
+    public boolean strafeSpecificDistanceLeft(double distance) {
+    	if (Math.abs(leftFrontEncoder.getDistance()) > distance - 3 && Math.abs(leftFrontEncoder.getDistance()) < distance + 3) {
+			setAll(0, 0, 0);
+			return true;
+		}
+    	else {
+			setAll(-1, 0, 1);
+			return false;
+		}
+    }
+    
+    public boolean strafeSpecificDistanceRight(double distance) {
+    	if (Math.abs(leftFrontEncoder.getDistance()) > distance - 3 && Math.abs(leftFrontEncoder.getDistance()) < distance + 3) {
+			setAll(0, 0, 0);
+			return true;
+		}
+    	else {
+			setAll(1, 0, 1);
+			return false;
 		}
     }
   }

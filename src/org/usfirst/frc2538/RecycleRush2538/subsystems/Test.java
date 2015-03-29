@@ -54,14 +54,16 @@ public class Test extends Subsystem {
  
 	}
 	
-	public void testDistance() {
-		if (testEncoder.getDistance() > 58 && testEncoder.getDistance() < 68) {
+	public boolean testDistance() {
+		SmartDashboard.putNumber("encoderDistance", testEncoder.getDistance());
+		if (testEncoder.getDistance() > 184 && testEncoder.getDistance() < 192) {
 			test.set(0);
+			return true;
 		}
 		else {
-			test.set(.25);
+			test.set(1);
+			return false;
 		}
-		SmartDashboard.putNumber("encoderDistance", testEncoder.getDistance());
 	}
 	
 	public void testRate() {

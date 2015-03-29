@@ -124,7 +124,7 @@ Children:
           validators: &id005 [DigitalChannel]
           value: '6'
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Distance Per Pulse, validators: null, value: 4.71238899}
+          name: Distance Per Pulse, validators: null, value: 0.70685835}
         PID Source: !!robotbuilder.data.properties.ChoicesProperty
           choices: &id006 [kDistance, kRate]
           default: kRate
@@ -158,7 +158,7 @@ Children:
           validators: *id005
           value: '8'
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Distance Per Pulse, validators: null, value: 4.71238899}
+          name: Distance Per Pulse, validators: null, value: 0.70685835}
         PID Source: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id006
           default: kRate
@@ -190,7 +190,7 @@ Children:
           validators: *id005
           value: '10'
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Distance Per Pulse, validators: null, value: 4.71238899}
+          name: Distance Per Pulse, validators: null, value: 0.70685835}
         PID Source: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id006
           default: kRate
@@ -222,7 +222,7 @@ Children:
           validators: *id005
           value: '12'
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Distance Per Pulse, validators: null, value: 4.71238899}
+          name: Distance Per Pulse, validators: null, value: 0.70685835}
         PID Source: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id006
           default: kRate
@@ -494,7 +494,7 @@ Children:
           validators: *id005
           value: '1'
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Distance Per Pulse, validators: null, value: 2.6927937}
+          name: Distance Per Pulse, validators: null, value: 0.03792667}
         PID Source: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id006
           default: kRate
@@ -805,7 +805,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '2'
+          value: '15'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -1099,7 +1099,7 @@ Children:
           name: Command
           type: Command
           validators: *id019
-          value: testEncoderRate
+          value: TestEncoderDistance
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id020
           default: whileHeld
@@ -1108,6 +1108,30 @@ Children:
           value: whenPressed
       Base: Joystick Button
       Name: testEncoderRateButton
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: secondaryStick}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id018
+          default: '1'
+          name: Button
+          validators: null
+          value: '2'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id019
+          value: TestReset
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id020
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: testResetButton
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id021
@@ -1519,6 +1543,54 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: testEncoderRate
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: DriveSpecificDistanceForwardCommand
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: StrafeSpecificDistanceLeftCommand
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: StrafeSpecificDistanceRightCommand
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: ResetEncoders
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: TestEncoderDistance
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: TestReset
   Properties: {}
   Base: Commands
   Name: Commands

@@ -86,7 +86,7 @@ public class OI {
         secondaryStick = new Joystick(1);
         
         testEncoderRateButton = new JoystickButton(secondaryStick, 1);
-        testEncoderRateButton.whenPressed(new testEncoderRate());
+        testEncoderRateButton.whenPressed(new TestEncoderDistance());
         diagnostics = new JoystickButton(secondaryStick, 13);
         diagnostics.whenPressed(new DisplayRangeFinder());
         getThingButton = new JoystickButton(secondaryStick, 12);

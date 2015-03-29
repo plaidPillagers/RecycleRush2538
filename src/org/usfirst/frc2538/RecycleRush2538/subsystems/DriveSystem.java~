@@ -80,9 +80,9 @@ public class DriveSystem extends Subsystem {
     public int driveMode  = BALANCEDDRIVE;
     MecanumSpeedConrtoller[] sketchySpeedConrtollers = new MecanumSpeedConrtoller[4];
     
-    int WHEEL_RADIUS = 3;
-    double pulsePerRotaion = 360;
-    double driveEncoderDistancePerTick = (Math.PI * 2 * WHEEL_RADIUS) / pulsePerRotaion;
+    //int WHEEL_RADIUS = 3;
+    //double pulsePerRotaion = 360;
+    //double driveEncoderDistancePerTick = (Math.PI * 2 * WHEEL_RADIUS) / pulsePerRotaion;
     long startTime = 0;
     
     double circularXVal = 0.0;
@@ -510,6 +510,39 @@ public class DriveSystem extends Subsystem {
 		}
     	else {
 			homemadeZ(.7);
+		}
+    }
+    
+    public boolean driveSpecificDistanceForward(double distance) {
+    	if (leftFrontEncoder.getDistance() > distance - 3 && leftFrontEncoder.getDistance() < distance + 3) {
+    		setAll(0, 0, 0);
+    		return true;
+		}
+    	else {
+			setAll(0, 1, .5);
+			return false;
+		}
+    }
+    
+    public boolean strafeSpecificDistanceLeft(double distance) {
+    	if (leftFrontEncoder.getDistance() > distance - 3 && leftFrontEncoder.getDistance() < distance + 3) {
+			setAll(0, 0, 0);
+			return true;
+		}
+    	else {
+			setAll(-1, 0, 1);
+			return false;
+		}
+    }
+    
+    public boolean strafeSpecificDistanceRight(double distance) {
+    	if (leftFrontEncoder.getDistance() > distance - 3 && leftFrontEncoder.getDistance() < distance + 3) {
+			setAll(0, 0, 0);
+			return true;
+		}
+    	else {
+			setAll(1, 0, 1);
+			return false;
 		}
     }
   }

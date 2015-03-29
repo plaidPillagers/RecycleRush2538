@@ -77,19 +77,19 @@ public class RobotMap {
         driveSystemRobotDrive41.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         driveSystemleftFrontEncoder = new Encoder(6, 7, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSystem", "leftFrontEncoder", driveSystemleftFrontEncoder);
-        driveSystemleftFrontEncoder.setDistancePerPulse(4.71238899);
+        driveSystemleftFrontEncoder.setDistancePerPulse(0.70685835);
         driveSystemleftFrontEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
         driveSystemrightFrontEncoder = new Encoder(8, 9, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSystem", "rightFrontEncoder", driveSystemrightFrontEncoder);
-        driveSystemrightFrontEncoder.setDistancePerPulse(4.71238899);
+        driveSystemrightFrontEncoder.setDistancePerPulse(0.70685835);
         driveSystemrightFrontEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
         driveSystemleftRearEncoder = new Encoder(10, 11, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSystem", "leftRearEncoder", driveSystemleftRearEncoder);
-        driveSystemleftRearEncoder.setDistancePerPulse(4.71238899);
+        driveSystemleftRearEncoder.setDistancePerPulse(0.70685835);
         driveSystemleftRearEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
         driveSystemrightRearEncoder = new Encoder(12, 13, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSystem", "rightRearEncoder", driveSystemrightRearEncoder);
-        driveSystemrightRearEncoder.setDistancePerPulse(4.71238899);
+        driveSystemrightRearEncoder.setDistancePerPulse(0.70685835);
         driveSystemrightRearEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
         driveSystemGyro = new Gyro(0);
         LiveWindow.addSensor("DriveSystem", "Gyro", driveSystemGyro);
@@ -124,7 +124,7 @@ public class RobotMap {
         LiveWindow.addActuator("Test", "test", (Talon) testtest);
         
         testtestEncoder = new Encoder(1, 2, true, EncodingType.k4X);
-        //LiveWindow.addSensor("Test", "testEncoder", testtestEncoder);
+        LiveWindow.addSensor("Test", "testEncoder", testtestEncoder);
         testtestEncoder.setDistancePerPulse(0.03792667);
         testtestEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
 
