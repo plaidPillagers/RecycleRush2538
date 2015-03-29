@@ -96,23 +96,17 @@ public class DriveSystem extends Subsystem {
     
     // Ultrasonic Range Finders
     private byte[] buffer; //I don't know why need this but the read() method used by I2C really wants it
-    private I2C forwardRangeFinder = new I2C(I2C.Port.kOnboard, 224);
+    private I2C forwardRangeFinder = new I2C(I2C.Port.kOnboard, 200);
     private double forwardRange = 0;
     private double leftRange = 0;
     private double rightRange = 0;
     
+    // Accelorometer
     public Accelerometer accelerometer = new BuiltInAccelerometer();
         
-    //int WHEEL_RADIUS = 3;
-    //double pulsePerRotaion = 360;
-    //double driveEncoderDistancePerTick = (Math.PI * 2 * WHEEL_RADIUS) / pulsePerRotaion;
-    
     // Timing
     long startTime = 0;
-    
-    //double circularXVal = 0.0;
-    double circularYVal = 0.0;
-   
+       
     /***
      * AUTO CONSTANTS
      */
@@ -210,6 +204,8 @@ public class DriveSystem extends Subsystem {
     	double accelY = accelerometer.getY();
     	double accelZ = accelerometer.getZ();
     	
+    	double gyroAngle = gyro.getAngle();
+    	
     	double leftFrontEncoderSpeed = getEncoderSpeed(leftFrontEncoder);
     	double rightFrontEncoderSpeed = getEncoderSpeed(rightFrontEncoder);
     	double leftRearEncoderSpeed = getEncoderSpeed(leftRearEncoder);
@@ -220,14 +216,6 @@ public class DriveSystem extends Subsystem {
     	double rearLeftSpeed = leftRearEncoder.getRate();
     	double rearRightSpeed = rightRearEncoder.getRate();
     	
-    	// The built in I2C method returns true if not found and false if found (Don't ask why)
-    	/*
-    	try {
-    		boolean forwardRangeFinderFound = !forwardRangeFinder.addressOnly();
-		} catch (new NullPointerException()) {
-			// TODO: handle exception
-		}
-		*/
     	
     	SmartDashboard.putNumber("Joystick X: ", joyStickX);
     	SmartDashboard.putNumber("Joystick Y: ", joyStickY);
@@ -258,7 +246,7 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putNumber("left rear encoder speed: ", leftRearEncoderSpeed);
     	SmartDashboard.putNumber("right rear encoder speed: ", rightRearEncoderSpeed);
     	
-    	//SmartDashboard.putBoolean("ForwardRangeFinderFound", forwardRangeFinderFound);
+    	SmartDashboard.putNumber("gyroAngle", gyroAngle);
     	
     }
     
@@ -425,20 +413,9 @@ public class DriveSystem extends Subsystem {
     }
     */
     
-   /*public void testMecanumDriveTopRight() {
-	   leftFrontMec.testSet(.1, .2, 1.0, "diagonal top right left front", .3);
-	   leftFrontMec.set(.1, .2, 1.0);
-	   rightFrontMec.testSet(.1, .2, 1.0, "diagnoal top right right front", .1);
-	   rightFrontMec.set(.1, .2, 1.0);
-	   Joystick driveJoystick = Robot.oi.driveStick;
-	   displayDriveInfo(driveJoystick);
-   }
-   */
-    
-    /*public void autoDriveForwardWithSensorAndDistance(double forwardDistance, boolean usingPortSensor) {
-    	
+    public void resetGyro() {
+    	gyro.reset();
     }
-    */
     
     public boolean centerAngle() {
     	double gyroAngle = gyro.getAngle();
