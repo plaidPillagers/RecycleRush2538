@@ -19,6 +19,8 @@ import org.usfirst.frc2538.RecycleRush2538.Robot;
 import org.usfirst.frc2538.RecycleRush2538.RobotMap;
 import org.usfirst.frc2538.RecycleRush2538.commands.*;
 
+import com.ni.vision.NIVision.Range;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.I2C;
@@ -26,7 +28,6 @@ import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -95,8 +96,11 @@ public class DriveSystem extends Subsystem {
      */
     
     // Ultrasonic Range Finders
-    private byte[] buffer; //I don't know why need this but the read() method used by I2C really wants it
-    private I2C forwardRangeFinder = new I2C(I2C.Port.kOnboard, 200);
+    private byte[] buffer = new byte[2]; //I don't know why need this but the read() method used by I2C really wants it
+    private I2C forwardRangeFinder = new I2C(I2C.Port.kOnboard, 0xc8);
+    private boolean isFirstReading = true;
+    private long echoTime;// the sensor needs 100ms between writing and reading
+    private int rangeCM = -1000; // if there is not a range 
     private double forwardRange = 0;
     private double leftRange = 0;
     private double rightRange = 0;
@@ -206,6 +210,8 @@ public class DriveSystem extends Subsystem {
     	
     	double gyroAngle = gyro.getAngle();
     	
+    	int forwardRange = displayRangeFinderDistance();
+    	
     	double leftFrontEncoderSpeed = getEncoderSpeed(leftFrontEncoder);
     	double rightFrontEncoderSpeed = getEncoderSpeed(rightFrontEncoder);
     	double leftRearEncoderSpeed = getEncoderSpeed(leftRearEncoder);
@@ -247,6 +253,8 @@ public class DriveSystem extends Subsystem {
     	SmartDashboard.putNumber("right rear encoder speed: ", rightRearEncoderSpeed);
     	
     	SmartDashboard.putNumber("gyroAngle", gyroAngle);
+    	
+    	SmartDashboard.putNumber("forward distance", forwardRange);
     	
     }
     
@@ -372,27 +380,23 @@ public class DriveSystem extends Subsystem {
      * Used as a proof of concept for the I2C rangefinder 
      */
     
-    public void displayRangeFinderDistance() {
-    	/*
-    	if (!forwardRangeFinder.addressOnly()) {
-    		forwardRangeFinder.write(204, 81);
-    		if (getElapsetime() >= 0 && getElapsetime() < 3) {
-				reset();
-			}
-    		
-    		if (getElapsetime() > 80) {
-    			forwardRangeFinder.read(225, 2, buffer);
-    			
-    			/*
-    	    	 * Since we currently don't know what the hell this buffer array is, I will print everything from it!
-    	    	 */
-    		/*
-    			for (int i = 0; i < buffer.length; i++) {
-    				SmartDashboard.putNumber("Buffer[ " + i + " ]", buffer[i]);
-    			}
-			}
+    public int displayRangeFinderDistance() {
+    	if (isFirstReading) {
+			forwardRangeFinder.write(0xE0, 0x51);// 224, 81
+			echoTime = System.currentTimeMillis() + 1000;
+			isFirstReading = false;
 		}
-    	*/
+    	else if (System.currentTimeMillis() >= echoTime) {
+			boolean error = forwardRangeFinder.read(0xE1, 2, buffer);//225
+			rangeCM = buffer[0] * 256 + buffer[1];// gives range in cm
+			SmartDashboard.putBoolean("error", error);
+			SmartDashboard.putNumber("buffer[0]", buffer[0]);
+			SmartDashboard.putNumber("buffer[1]", buffer[1]);
+			forwardRangeFinder.write(0xE0, 0x51);//224, 81
+			echoTime = System.currentTimeMillis() + 1000;
+			SmartDashboard.putNumber("echo time", echoTime);
+		}
+    	return rangeCM;
     }
     
     

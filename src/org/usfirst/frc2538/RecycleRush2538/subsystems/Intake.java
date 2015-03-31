@@ -38,6 +38,7 @@ public class Intake extends Subsystem {
 	private final double RIGHT_SPIN = -.7;
 	private boolean isToteConfig = true;
 	public boolean isFirstThing = true;
+	public boolean intaking = false;
 	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -59,6 +60,7 @@ public class Intake extends Subsystem {
 	public void intake() {
 		leftWheel.set(INTAKE_SPEED);
 		rightWheel.set(-INTAKE_SPEED);
+		intaking = true;
 	}
 
 	public void eject() {
@@ -71,6 +73,7 @@ public class Intake extends Subsystem {
 	public void stop() {
 		leftWheel.set(0);
 		rightWheel.set(0);
+		intaking = false;
 	}
 
 	public void counterClockwiseSpin() {

@@ -22,12 +22,12 @@ public class StackThing extends CommandGroup {
     	//addSequential(new ClosedConfigCommand());
     	SmartDashboard.putBoolean("stackThing", true);
     	addSequential(new intakeCommand());
-    	addSequential(new ContainerConfigCommand());
+    	//addSequential(new ContainerConfigCommand());
     	addSequential(new LowerLift());
     	addSequential(new Wait(), .2);
     	addSequential(new ExtendTridentCommand());
     	addSequential(new Wait(), 2);
-    	addSequential(new ClosedConfigCommand());
+    	//addSequential(new ClosedConfigCommand());
     	addSequential(new intakeCommand());
     	addSequential(new OpenConfigCommand());
     	addSequential(new RaiseLift());
