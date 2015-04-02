@@ -24,7 +24,7 @@ public class GetThing extends CommandGroup {
     public  GetThing() {
     	SmartDashboard.putBoolean("getThing", true);
     	addSequential(new ExtendTridentCommand());
-    	//addSequential(new ToteConfigCommand());
+    	addSequential(new ToteConfigCommand());
     	addSequential(new intakeCommand());
     	addSequential(new RunIntake(), .5);
     	addSequential(new ContainerConfigCommand());

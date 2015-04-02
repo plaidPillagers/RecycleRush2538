@@ -141,8 +141,9 @@ public class Intake extends Subsystem {
 		configActuator.set(DoubleSolenoid.Value.kForward);
 	}
 	
-	public void runIntakeWheels() {
+	/*public void runIntakeWheels() {
 		leftWheel.set(INTAKE_SPEED);
 		rightWheel.set(-INTAKE_SPEED);
 	}
+	*/
 }
