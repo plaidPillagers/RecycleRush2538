@@ -32,7 +32,7 @@ public class GetThing extends CommandGroup {
     	addSequential(new Wait(), .25);
     	addSequential(new RetractTridentCommand());
     	SmartDashboard.putBoolean("getThing", false);
-    	Robot.intake.isFirstThing = false;
+    	//Robot.intake.isFirstThing = false;
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

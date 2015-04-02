@@ -97,13 +97,16 @@ public class DriveSystem extends Subsystem {
     
     // Ultrasonic Range Finders
     private byte[] buffer = new byte[2]; //I don't know why need this but the read() method used by I2C really wants it
-    private I2C forwardRangeFinder = new I2C(I2C.Port.kOnboard, 0xc8);
+    //private I2C forwardRangeFinder = new I2C(I2C.Port.kOnboard, 0xc8);
     private boolean isFirstReading = true;
     private long echoTime;// the sensor needs 100ms between writing and reading
     private int rangeCM = -1000; // if there is not a range 
     private double forwardRange = 0;
     private double leftRange = 0;
     private double rightRange = 0;
+    
+    public RangeFinder forwardRangeFinder = new RangeFinder(0x04);
+    public RangeFinder leftRangeFinder = new RangeFinder(0x08);
     
     // Accelorometer
     public Accelerometer accelerometer = new BuiltInAccelerometer();
@@ -381,6 +384,7 @@ public class DriveSystem extends Subsystem {
      */
     
     public int displayRangeFinderDistance() {
+    	/*
     	if (isFirstReading) {
 			forwardRangeFinder.write(0xE0, 0x51);// 224, 81
 			echoTime = System.currentTimeMillis() + 1000;
@@ -397,6 +401,8 @@ public class DriveSystem extends Subsystem {
 			SmartDashboard.putNumber("echo time", echoTime);
 		}
     	return rangeCM;
+    	*/
+    	return 0;
     }
     
     

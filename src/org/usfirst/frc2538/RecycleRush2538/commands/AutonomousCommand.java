@@ -13,6 +13,7 @@ package org.usfirst.frc2538.RecycleRush2538.commands;
 import java.util.ArrayList;
 
 import org.usfirst.frc2538.RecycleRush2538.Robot;
+import org.usfirst.frc2538.RecycleRush2538.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -81,6 +82,14 @@ public class AutonomousCommand extends CommandGroup {
 			SmartDashboard.putString("auto mode:", "c");
 			addSequential(new AutoDriveForward(), 1.4);
 			
+		}else if(input.charAt(0) == 'd') {
+			addSequential(new RunIntake());
+			addSequential(new AutoDriveForward(), .2);
+			addSequential(new ClosedConfigCommand());
+			addSequential(new Wait(), .3);
+			addSequential(new stop());
+			addSequential(new AutoTurnRight(), .5);
+			addSequential(new AutoDriveRight(), 2);
 		}
 		
 		/*

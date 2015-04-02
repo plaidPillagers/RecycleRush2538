@@ -78,19 +78,19 @@ public class RobotMap {
 
         driveSystemRobotDrive41.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         driveSystemRobotDrive41.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-        driveSystemleftFrontEncoder = new Encoder(6, 7, false, EncodingType.k4X);
+        driveSystemleftFrontEncoder = new Encoder(1, 2, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSystem", "leftFrontEncoder", driveSystemleftFrontEncoder);
         driveSystemleftFrontEncoder.setDistancePerPulse(0.70685835);
         driveSystemleftFrontEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-        driveSystemrightFrontEncoder = new Encoder(8, 9, false, EncodingType.k4X);
+        driveSystemrightFrontEncoder = new Encoder(3, 4, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSystem", "rightFrontEncoder", driveSystemrightFrontEncoder);
         driveSystemrightFrontEncoder.setDistancePerPulse(0.70685835);
         driveSystemrightFrontEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-        driveSystemleftRearEncoder = new Encoder(10, 11, false, EncodingType.k4X);
+        driveSystemleftRearEncoder = new Encoder(5, 6, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSystem", "leftRearEncoder", driveSystemleftRearEncoder);
         driveSystemleftRearEncoder.setDistancePerPulse(0.70685835);
         driveSystemleftRearEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-        driveSystemrightRearEncoder = new Encoder(12, 13, false, EncodingType.k4X);
+        driveSystemrightRearEncoder = new Encoder(7, 8, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSystem", "rightRearEncoder", driveSystemrightRearEncoder);
         driveSystemrightRearEncoder.setDistancePerPulse(0.70685835);
         driveSystemrightRearEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
@@ -109,11 +109,11 @@ public class RobotMap {
         intakeconfigActuator = new DoubleSolenoid(0, 2, 3);      
         LiveWindow.addActuator("Intake", "configActuator", intakeconfigActuator);
         
-        intakeleftIntakeEncoder = new Encoder(16, 17, false, EncodingType.k4X);
+        intakeleftIntakeEncoder = new Encoder(10, 11, false, EncodingType.k4X);
         LiveWindow.addSensor("Intake", "leftIntakeEncoder", intakeleftIntakeEncoder);
         intakeleftIntakeEncoder.setDistancePerPulse(1.0);
         intakeleftIntakeEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-        intakerightIntakeEncoder = new Encoder(18, 19, false, EncodingType.k4X);
+        intakerightIntakeEncoder = new Encoder(12, 13, false, EncodingType.k4X);
         LiveWindow.addSensor("Intake", "rightIntakeEncoder", intakerightIntakeEncoder);
         intakerightIntakeEncoder.setDistancePerPulse(1.0);
         intakerightIntakeEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
@@ -126,7 +126,7 @@ public class RobotMap {
         testtest = new Talon(8);
         LiveWindow.addActuator("Test", "test", (Talon) testtest);
         
-        testtestEncoder = new Encoder(1, 2, true, EncodingType.k4X);
+        testtestEncoder = new Encoder(20, 21, true, EncodingType.k4X);
         LiveWindow.addSensor("Test", "testEncoder", testtestEncoder);
         testtestEncoder.setDistancePerPulse(0.03792667);
         testtestEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);

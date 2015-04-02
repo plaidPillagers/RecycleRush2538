@@ -21,13 +21,18 @@ public class StackThing extends CommandGroup {
     public  StackThing() {
     	//addSequential(new ClosedConfigCommand());
     	SmartDashboard.putBoolean("stackThing", true);
+    	addSequential(new ClosedConfigCommand());
     	addSequential(new intakeCommand());
     	//addSequential(new ContainerConfigCommand());
     	addSequential(new LowerLift());
-    	addSequential(new Wait(), .2);
+    	addSequential(new Wait(), .3);
     	addSequential(new ExtendTridentCommand());
-    	addSequential(new Wait(), 2);
+    	addSequential(new Wait(), .3);
+    	addSequential(new RetractTridentCommand());
+    	addSequential(new Wait(), 1.7);
     	//addSequential(new ClosedConfigCommand());
+    	addSequential(new ExtendTridentCommand());
+    	addSequential(new Wait(), .3);
     	addSequential(new intakeCommand());
     	addSequential(new OpenConfigCommand());
     	addSequential(new RaiseLift());

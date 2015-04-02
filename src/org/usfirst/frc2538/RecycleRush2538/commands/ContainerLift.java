@@ -38,7 +38,7 @@ public class  ContainerLift extends Command {
     	Robot.intake.openConfig();
     	Robot.lift.extendTrident();
     	Robot.lift.raiseLift();
-    	Robot.intake.isFirstThing = false;
+    	//Robot.intake.isFirstThing = false;
     }
 
     // Make this return true when this Command no longer needs to run execute()

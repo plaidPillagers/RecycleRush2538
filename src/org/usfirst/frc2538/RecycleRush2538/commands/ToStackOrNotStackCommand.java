@@ -45,13 +45,13 @@ public class  ToStackOrNotStackCommand extends Command {
     	loweredLift = false;
     	extendedTrident = false;
     	
-    	if (Robot.intake.isFirstThing) {
+    	/*if (Robot.intake.isFirstThing) {
     		Robot.intake.isFirstThing = false;
 			isDone = true;
 		}
     	else {
     		timer.restart();
-    	}
+    	}*/
     }
 
     // Called repeatedly when this Command is scheduled to run

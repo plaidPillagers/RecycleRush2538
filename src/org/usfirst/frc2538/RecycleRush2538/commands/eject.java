@@ -40,7 +40,7 @@ public class  eject extends Command {
     	//debugCounter++;
     	//SmartDashboard.putString("Eject Execute", "executed" + debugCounter );
     	Robot.intake.eject();
-    	Robot.intake.isFirstThing = true;
+    	//Robot.intake.isFirstThing = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()

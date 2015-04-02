@@ -174,6 +174,7 @@ public class Robot extends IterativeRobot {
     	NIVision.IMAQdxStartAcquisition(session);
     	Robot.driveSystem.resetGyro();
     	Robot.intake.intake();
+    	Robot.driveSystem.forwardRangeFinder.startSensor();
     }
 
     /**
@@ -188,6 +189,7 @@ public class Robot extends IterativeRobot {
         NIVision.IMAQdxGrab(session, frame, 1);
         
         CameraServer.getInstance().setImage(frame);
+        SmartDashboard.putNumber("forward distance", Robot.driveSystem.forwardRangeFinder.getRangeCM());
        // SmartDashboard.putBoolean("compressorOn", compressorOn);
     }
 

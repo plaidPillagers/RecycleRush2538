@@ -37,7 +37,7 @@ public class Intake extends Subsystem {
 	private final double LEFT_SPIN = .7;
 	private final double RIGHT_SPIN = -.7;
 	private boolean isToteConfig = true;
-	public boolean isFirstThing = true;
+	//public boolean isFirstThing = true;
 	public boolean intaking = false;
 	
 	// Put methods for controlling this subsystem
@@ -54,7 +54,7 @@ public class Intake extends Subsystem {
 	}
 	
 	public void init() {
-		isFirstThing = true;
+		//isFirstThing = true;
 	}
 
 	public void intake() {
