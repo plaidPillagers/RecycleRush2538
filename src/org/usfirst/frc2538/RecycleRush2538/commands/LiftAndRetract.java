@@ -20,7 +20,7 @@ public class LiftAndRetract extends CommandGroup {
     public  LiftAndRetract() {
     	addSequential(new OpenConfigCommand());
     	addSequential(new RaiseLift());
-    	addSequential(new Wait(), .25);
+    	addSequential(new Wait(), .2);
     	addSequential(new RetractTridentCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());

@@ -32,7 +32,13 @@ public class MecanumSpeedConrtoller {
 	public double dotProduct(double xVal, double yVal, double throttle) {
 		double xValThrottled = xVal * throttle;
 		double yValThrottled = yVal * throttle;
-		return (xPull * xValThrottled) + (yPull * yValThrottled);
+		double dotProduct = (xPull * xValThrottled) + (yPull * yValThrottled);
+		if (Math.abs(dotProduct) > 1 && dotProduct > 0) {
+			dotProduct = 1;
+		}else if (Math.abs(dotProduct) >1 && dotProduct < 0) {
+			dotProduct = -1;
+		}
+		return dotProduct;
 	}
 	
 	public void set(double xVal, double yVal, double throttle) {

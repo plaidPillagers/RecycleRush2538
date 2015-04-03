@@ -189,7 +189,7 @@ public class Robot extends IterativeRobot {
         NIVision.IMAQdxGrab(session, frame, 1);
         
         CameraServer.getInstance().setImage(frame);
-        SmartDashboard.putNumber("forward distance", Robot.driveSystem.forwardRangeFinder.getRangeCM());
+        //SmartDashboard.putNumber("forward distance", Robot.driveSystem.forwardRangeFinder.getRangeCM());
        // SmartDashboard.putBoolean("compressorOn", compressorOn);
     }
 

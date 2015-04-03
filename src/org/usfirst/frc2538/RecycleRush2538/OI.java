@@ -69,6 +69,7 @@ public class OI {
     public JoystickButton intakeToggleButton;
     public JoystickButton liftActuatorButton;
     public JoystickButton ejectOnly;
+    public JoystickButton ejectGroupButton;
     public JoystickButton stopButton;
     public JoystickButton containerLiftButton;
     public JoystickButton spinCounterClockwiseButton;
@@ -108,7 +109,9 @@ public class OI {
         containerLiftButton.whenPressed(new ContainerLift());
         stopButton = new JoystickButton(secondaryStick, 9);
         stopButton.whenPressed(new stop());
-        ejectOnly = new JoystickButton(secondaryStick, 10);
+        ejectGroupButton = new JoystickButton(secondaryStick, 10);
+        ejectGroupButton.whenPressed(new EjectGroup());
+        ejectOnly = new JoystickButton(secondaryStick, 7);
         ejectOnly.whileHeld(new eject());
         liftActuatorButton = new JoystickButton(secondaryStick, 3);
         liftActuatorButton.whenPressed(new liftActuator());

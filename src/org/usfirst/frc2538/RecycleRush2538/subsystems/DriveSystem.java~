@@ -159,7 +159,7 @@ public class DriveSystem extends Subsystem {
     	//madcatz joystick switches throttle and z
     	robotDrive41.mecanumDrive_Polar(minimumTolerance(magnitude) * throttle, reverseDirection(direction), checkTwist(reverseRotation(rotation)));
     	//stop multiplying by zero on rotation
-    	displayDriveInfo(driveJoystick);
+    	//displayDriveInfo(driveJoystick);
     	SmartDashboard.putNumber("Real magnitude: ", minimumTolerance(magnitude) * throttle);
     }
     
@@ -281,7 +281,7 @@ public class DriveSystem extends Subsystem {
     			setAll(joystickX, joystickY, throttle);
 			}
     	}
-    	displayDriveInfo(driveJoystick);
+    	//displayDriveInfo(driveJoystick);
     }
 
 	public void makeWheels() {
@@ -474,7 +474,8 @@ public class DriveSystem extends Subsystem {
 		}
     }
     
-    public boolean centerDistanceForward() {
+    
+   public boolean centerDistanceForward() {
     	if (forwardRange <= OPTIMALDISTANCETOTHING) {
 			return true;
 		}
@@ -483,6 +484,7 @@ public class DriveSystem extends Subsystem {
     		return false;
     	}
     }
+   
     
     private void autoStrafe(int direction, double magnitude) {
     	/*leftFrontMec.set(direction * magnitude, 0, 1);
