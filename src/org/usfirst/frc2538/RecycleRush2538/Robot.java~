@@ -174,7 +174,7 @@ public class Robot extends IterativeRobot {
     	NIVision.IMAQdxStartAcquisition(session);
     	Robot.driveSystem.resetGyro();
     	Robot.intake.intake();
-    	Robot.driveSystem.forwardRangeFinder.startSensor();
+    	//Robot.driveSystem.forwardRangeFinder.startSensor();
     }
 
     /**

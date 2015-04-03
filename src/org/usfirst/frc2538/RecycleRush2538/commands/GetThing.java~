@@ -29,7 +29,7 @@ public class GetThing extends CommandGroup {
     	addSequential(new RunIntake(), .5);
     	addSequential(new ContainerConfigCommand());
     	addSequential(new RaiseLift());
-    	addSequential(new Wait(), .2);
+    	addSequential(new Wait(), .15);
     	addSequential(new RetractTridentCommand());
     	SmartDashboard.putBoolean("getThing", false);
     	//Robot.intake.isFirstThing = false;

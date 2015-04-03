@@ -56,11 +56,11 @@ public class OI {
     public JoystickButton getThingDriverButton;
     public JoystickButton forwardHeavyButton;
     public JoystickButton ejectButton;
-    public JoystickButton balancedButton;
+    public JoystickButton aftHeavyButton;
     public JoystickButton stackThingDriverButton;
     public JoystickButton twistButton;
-    public JoystickButton aftHeavyButton;
     public JoystickButton intakeButton;
+    public JoystickButton balancedButton;
     public Joystick driveStick;
     public JoystickButton configButton;
     public JoystickButton tridentActuatorButton;
@@ -127,16 +127,16 @@ public class OI {
         configButton.whenPressed(new ConfigCommand());
         driveStick = new Joystick(0);
         
+        balancedButton = new JoystickButton(driveStick, 12);
+        balancedButton.whenPressed(new SetBalanced());
         intakeButton = new JoystickButton(driveStick, 13);
         intakeButton.whenPressed(new SmartStack());
-        aftHeavyButton = new JoystickButton(driveStick, 10);
-        aftHeavyButton.whenPressed(new SetAft());
         twistButton = new JoystickButton(driveStick, 7);
         twistButton.whileHeld(new twist());
         stackThingDriverButton = new JoystickButton(driveStick, 6);
         stackThingDriverButton.whenPressed(new StackThing());
-        balancedButton = new JoystickButton(driveStick, 5);
-        balancedButton.whenPressed(new SetBalanced());
+        aftHeavyButton = new JoystickButton(driveStick, 5);
+        aftHeavyButton.whenPressed(new SetAft());
         ejectButton = new JoystickButton(driveStick, 4);
         ejectButton.whenPressed(new EjectGroup());
         forwardHeavyButton = new JoystickButton(driveStick, 3);
