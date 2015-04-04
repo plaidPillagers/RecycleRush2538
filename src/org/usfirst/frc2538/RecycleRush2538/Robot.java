@@ -11,7 +11,6 @@
 
 package org.usfirst.frc2538.RecycleRush2538;
 
-import java.awt.Frame;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;

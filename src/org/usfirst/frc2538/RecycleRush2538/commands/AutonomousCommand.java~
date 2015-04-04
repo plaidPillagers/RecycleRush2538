@@ -85,12 +85,16 @@ public class AutonomousCommand extends CommandGroup {
 			
 		}else if(input.charAt(0) == 'd') {
 			addSequential(new RunIntake());
-			addSequential(new AutoDriveForward(), .2);
+			addSequential(new AutoDriveForward(), .3);
+			addSequential(new Wait(), .7);
 			addSequential(new ClosedConfigCommand());
-			addSequential(new Wait(), .3);
-			addSequential(new stop());
-			addSequential(new AutoTurnRight(), .5);
-			addSequential(new AutoDriveRight(), 2);
+			addSequential(new Wait(), 1);
+			//addSequential(new stop());
+			//addSequential(new AutoCenterAngleCommand(), 1);
+			addSequential(new AutoTurnRight(), 2);
+			addSequential(new Wait(), 1);
+			//addSequential(new AutoDriveRight(), 2);
+			addSequential(new AutoDriveForward(.5), 1.3);
 		}else if (input.charAt(0) == 'e') {
 			addSequential(new AutoDriveBackward(), 1.95);
 		}

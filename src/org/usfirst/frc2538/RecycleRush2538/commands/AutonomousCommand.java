@@ -61,7 +61,7 @@ public class AutonomousCommand extends CommandGroup {
 			addSequential(new AutoDriveForward(), driveForwardTime);
 			
 		}
-		else if (input.charAt(0) == 'a') {
+		else if (input.charAt(0) == 'a') { // container 
 			SmartDashboard.putString("auto mode:", "a");
 			addSequential(new OpenConfigCommand());
 			addParallel(new RunIntake());
@@ -79,22 +79,30 @@ public class AutonomousCommand extends CommandGroup {
 			}
 			
 		}
-		else if (input.charAt(0) == 'c') {
+		else if (input.charAt(0) == 'c') { //driving forward
 			SmartDashboard.putString("auto mode:", "c");
 			addSequential(new AutoDriveForward(), 1.4);
 			
-		}else if(input.charAt(0) == 'd') {
+		}else if(input.charAt(0) == 'd') { // tote 
 			addSequential(new RunIntake());
-			addSequential(new AutoDriveForward(), .2);
+			addSequential(new AutoDriveForward(), .3);
+			addSequential(new Wait(), .7);
 			addSequential(new ClosedConfigCommand());
-			addSequential(new Wait(), .3);
-			addSequential(new stop());
-			addSequential(new AutoTurnRight(), .5);
-			addSequential(new AutoDriveRight(), 2);
-		}else if (input.charAt(0) == 'e') {
-			addSequential(new AutoDriveBackward(), 1.95);
+			addSequential(new Wait(), 1);
+			//addSequential(new stop());
+			//addSequential(new AutoCenterAngleCommand(), 1);
+			addSequential(new AutoTurnRight(), 2);
+			addSequential(new Wait(), 1);
+			//addSequential(new AutoDriveRight(), 2);
+			addSequential(new AutoDriveForward(.5), 2.5);
+			addSequential(new AutoTurnRight(), 1.4);
+		}else if (input.charAt(0) == 'e') { // drive backward
+			addSequential(new AutoDriveBackward(), 2.6);
 		}
-		
+		else if (input.charAt(0) == 'x') { // test
+			addSequential(new CenterToAngle());
+		}
+
 		/*
 		else if (input.trim() == "1"){
 			SmartDashboard.putString("auto mode:", "1");
