@@ -91,10 +91,10 @@ public class AutonomousCommand extends CommandGroup {
 			addSequential(new Wait(), 1);
 			//addSequential(new stop());
 			//addSequential(new AutoCenterAngleCommand(), 1);
-			addSequential(new AutoTurnRight(), 2);
+			addSequential(new AutoTurnRight(), 1.5);
 			addSequential(new Wait(), 1);
 			//addSequential(new AutoDriveRight(), 2);
-			addSequential(new AutoDriveForward(.5), 2.5);
+			addSequential(new AutoDriveForward(.5), 2.8);  //.5,2.5 for no bump
 			addSequential(new AutoTurnRight(), 1.4);
 		}else if (input.charAt(0) == 'e') { // drive backward
 			addSequential(new AutoDriveBackward(), 2.6);
